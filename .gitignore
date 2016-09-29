@@ -64,6 +64,7 @@ target/
 .ipynb_checkpoints
 
 # sqlite files
+*.sqlite3
 *.sqlite
 
 # Temporary wizard-assist upload folders.
