@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+  {% block content %}
+  <div class="container-fluid">
+     <div class="container">
+       {% if form.errors %}
+         <div class="alert alert-danger">Errors:
+           <button type="button" class="close" data-dismiss="alert">×</button>
+           {% for field in form %}
+             {% if field.errors %}
+             <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+             {% endif %}
+           {% endfor %}
+         </div>
+       {% endif %}
+       <form method="POST" class="post-form" action="{% url 'application' %}">
+         {% csrf_token %}
+         {{ wizard.management_form }}
+
+         <h1>Education</h1>
+         <div class="progress">
+           <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
+             45%
+           </div>
+         </div>
+         <p class="lead">Please include college, university, graduate and professional schools.</p>
+         <div class="row">
+           <div class="col-md-12">
+             <div class="form-group">
+               <label for="{{ form.school_name.id_for_label }}">School</label>
+               <input type="text" class="form-control" name="{{ form.school_name.html_name }}" id="{{ form.school_name.id_for_label }}" value="{{ form.school_name.value|default_if_none:'' }}" placeholder="School name">
+             </div>
+           </div>
+         </div>
+         <div class="row">
+           <div class="col-md-6">
+             <div class="form-group">
+               <input type="text" class="form-control" name="{{ form.city.html_name }}" id="{{ form.city.id_for_label }}" value="{{ form.city.value|default_if_none:'' }}" placeholder="City">
+             </div>
+           </div>
+           <div class="col-md-3">
+             <select class="form-control" id="{{ form.state.id_for_label }}" name="{{ form.state.html_name }}">
+              {% for choice, choice_label in form.state.field.choices %}
+              <option value="{{ choice }}"{% if choice == field.value %} selected{% endif %}>{{ choice_label }}</option>
+              {% endfor %}
+             </select>
+           </div>
+           <div class="col-md-3">
+             <div class="form-group">
+               <input id="{{ form.zipcode.id_for_label }}" name="{{ form.zipcode.html_name }}" value="{{ form.zipcode.value|default_if_none:'' }}" type="text" class="form-control" placeholder="Zip code">
+             </div>
+           </div>
+         </div>
+         <div class="row">
+           <div class="col-md-3">
+             <div class="form-group">
+               <label for="{{ form.years_completed.id_for_label }}">Years completed:</label>
+               <input type="text" class="form-control" id="{{ form.years_completed.id_for_label }}" name="{{ form.years_completed.html_name }}" value="{{ form.years_completed.value|default_if_none:'' }}" placeholder="1, 2, 3, etc.">
+             </div>
+           </div>
+           <div class="col-md-3">
+             <div class="form-group">
+               <label for="{{ form.degree_earned.id_for_label }}">Diploma/degree earned:</label>
+               <input type="text" class="form-control" id="{{ form.degree_earned.id_for_label }}" name="{{ form.degree_earned.html_name }}" value="{{ form.degree_earned.value|default_if_none:'' }}" placeholder="None, Associate, Bachelor's, etc.">
+             </div>
+           </div>
+           <div class="col-md-6">
+             <div class="form-group">
+               <label for="{{ form.course_description.id_for_label }}">Describe your course of study:</label>
+               <textarea class="form-control" rows="7" id="{{ form.course_description.id_for_label }}" name="{{ form.course_description.html_name }}">{{ form.course_description.value|default_if_none:'' }}</textarea>
+             </div>
+           </div>
+         </div>
+         <div class="row">
+           <div class="col-md-4 text-left">
+             {% if wizard.steps.prev %}
+             <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+             {% endif %}
+           </div>
+           <div class="col-md-4 text-center">
+             <a class="btn btn-info" href="application4.html" role="button">Add another school</a>
+           </div>
+           <div class="col-md-4 text-right">
+             <input type="submit" value="Next >" class="btn btn-primary" role="button">
+           </div>
+         </div>
+       </form>
+     </div>
+   </div>
+   {% endblock %}

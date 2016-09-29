@@ -101,19 +101,19 @@
         <div class="row">
           <div class="col-md-3">
             <div class="form-group">
-              <label for="exampleInputEmail1">Job title:</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your most reason position">
+              <label for="{{ form.job_title.id_for_label }}">Job title:</label>
+              <input type="text" class="form-control" name="{{ form.job_title.html_name }}" id="{{ form.job_title.id_for_label }}" value="{{ form.job_title.value|default_if_none:'' }}" placeholder="Your most reason position">
             </div>
           </div>
           <div class="col-md-9">
             <div class="form-group">
-              <label for="exampleInputEmail1">Tell us about the work you performed:</label>
-              <textarea class="form-control" rows="10"></textarea>
+              <label for="{{ form.work_information.id_for_label }}">Tell us about the work you performed:</label>
+              <textarea class="form-control" rows="10" name="{{ form.work_information.html_name }}" id="{{ form.work_information.id_for_label }}">{{ form.work_information.value|default_if_none:'' }}</textarea>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 text-left">
             {% if wizard.steps.prev %}
             <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
             {% endif %}
