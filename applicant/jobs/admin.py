@@ -14,6 +14,8 @@ admin.site.register(Reference)
 
 class EmploymentStatusInline(admin.TabularInline):
     model = EmploymentStatus
+    max_num = 1
+    extra = 0
 
 
 class WorkExperienceInline(admin.TabularInline):
@@ -26,10 +28,14 @@ class EducationInline(admin.TabularInline):
 
 class AdditionalInformationInline(admin.TabularInline):
     model = AdditionalInformation
+    max_num = 1
+    extra = 0
 
 
 class ReferenceInline(admin.TabularInline):
     model = Reference
+    max_num = 3
+    extra = 0
 
 
 class ContactAdmin(admin.ModelAdmin):
