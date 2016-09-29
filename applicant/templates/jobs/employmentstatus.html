@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+  {% block content %}
+  <div class="container-fluid">
+    <div class="container">
+      {% if form.errors %}
+        <div class="alert alert-danger">Errors:
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {% for field in form %}
+            {% if field.errors %}
+            <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      <form method="POST" class="post-form" action="{% url 'application' %}">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+
+        <h1>Employment status</h1>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 15%;">
+            15%
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
+              <label for="legal">Are you legally eligible to work in the US for any employer?</label>
+              <span id="legal" class="help-block">If hired, you will be required to provide appropriate I-9 documentation.</span>
+          </div>
+          <div class="col-md-5">
+            {% for radio in form.legal_to_work %}
+              {{ radio }}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
+              <label for="{{ form.available_to_work.id_for_label }}">Are you availalbe to work:</label>
+          </div>
+          <div class="col-md-5">
+            {% for radio in form.available_to_work %}
+              {{ radio }}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
+              <label for="{{ form.start_work_date.id_for_label }}">On what date would you be available for work?</label>
+          </div>
+          <div class="col-md-5">
+            <input type="text" class="form-control datepicker" name="{{ form.start_work_date.html_name }}" id="{{ form.start_work_date.id_for_label }}" value="{{ form.start_work_date.value|default_if_none:'' }}" placeholder="mm/dd/yyyy">
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-7">
+              <label for="exampleInputEmail1">Are you currently employed?</label>
+          </div>
+          <div class="col-md-5">
+            {% for radio in form.currently_employed %}
+              {{ radio }}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
+              <label for="exampleInputEmail1">If so, may we contact your current employer?</label>
+          </div>
+          <div class="col-md-5">
+            {% for radio in form.contact_employer_ok %}
+              {{ radio }}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
+              <label for="exampleInputEmail1">Are you currently on "lay-off" status and subject to recall?</label>
+          </div>
+          <div class="col-md-5">
+            {% for radio in form.layoff %}
+              {{ radio }}
+            {% endfor %}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-7">
+              <label for="exampleInputEmail1">Have you ever filed an application with us before?</label>
+          </div>
+          <div class="col-md-2">
+            {% for radio in form.filed_previously %}
+              {{ radio }}
+            {% endfor %}
+          </div>
+          <div class="col-md-3">
+            <div class="form-group form-inline">
+              <label for="{{ form.filed_previously_date.id_for_label }}">Date:</label>
+              <input type="text" class="form-control datepicker" name="{{ form.filed_previously_date.html_name }}" id="{{ form.filed_previously_date.id_for_label }}" value="{{ form.filed_previously_date.value|default_if_none:'' }}" placeholder="mm/dd/yyyy">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
+              <label for="#">Have you ever been employed with us before?</label>
+          </div>
+          <div class="col-md-2">
+            {% for radio in form.employed_previously %}
+              {{ radio }}
+            {% endfor %}
+          </div>
+          <div class="col-md-3">
+            <div class="form-group form-inline">
+              <label for="{{ form.employed_previously_date.id_for_label }}">Date:</label>
+              <input type="text" class="form-control datepicker" name="{{ form.employed_previously_date.html_name }}" id="{{ form.employed_previously_date.id_for_label }}" value="{{ form.employed_previously_date.value|default_if_none:'' }}" placeholder="mm/dd/yyyy">
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-7">
+              <label for="exampleInputEmail1">Have you ever been convicted of a felony?</label>
+              <span id="helpBlock" class="help-block">Conviction will not necessarily disqualify an applicant from consideration.</span>
+          </div>
+          <div class="col-md-5">
+            {% for radio in form.convicted_felon %}
+              {{ radio }}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputEmail1">If yes, please explain and give dates:</label>
+              <textarea class="form-control" rows="3" name="{{ form.convicted_information.html_name }}" id="{{ form.convicted_information.id_for_label }}">{{ form.convicted_information.value|default_if_none:'' }}</textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            {% if wizard.steps.prev %}
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+            {% endif %}
+          </div>
+          <div class="col-md-6 text-right">
+            <input type="submit" value="Next >" class="btn btn-primary" role="button">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% endblock %}

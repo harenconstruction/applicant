@@ -1,0 +1,125 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Haren Construction Company, Inc.</title>
+    <meta name="description" content="Commercial and industrial building, mechanical and electrical contracting, public and private utilities and highway and heavy construction for government and private owners.">
+
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/2b790d7871.js"></script>
+
+    <!-- Stylesheets -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
+    <link href="{% static "css/styles.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><img src="{% static "img/logo-tiny.png" %} "></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#" data-toggle="collapse" data-target="#navbar">Who we are</a></li>
+            <li><a href="services.html" data-toggle="collapse" data-target="#navbar">What we do</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Current projects <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li class="navbar-text"><strong>Wastewater Treatment Plants</strong></li>
+                <li><a href="projects/roanoke-va-wpcp/index.html">Roanoke Regional WPCP</a></li>
+                <li><a href="projects/greensboro-nc-tzo-incinerator-1/index.html">T.Z. Osborne WRF Incinerator No. 1</a></li>
+                <li><a href="projects/birmingham-al-cahaba-river-trussville-wastewater-treatment/index.html">Cahaba River &amp; Trussville WWTP Phase 1/TMDL/Imps</a></li>
+
+                <li><a href="projects/chattanooga-tn-moccasin-bend-wwtp/index.html">Moccasin Bend WWTP Influent Screen Improvements</a></li>
+                <li><a href="projects/asheville-nc-incinerator-emissions/index.html">Incinerator System Rehab &amp; Emissions Upgrade</a></li>
+                <li><a href="projects/greensboro-nc-tzo-cct/index.html">T.Z. Osborne WRF Chlorine Contact Chambers #3 Repairs</a></li>
+                <li><a href="projects/decatur-al-riverview-lift-station/index.html">Riverview Lift Station</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="navbar-text"><strong>Water Treatment Plants</strong></li>
+                <li><a href="projects/athens-al-water-treatment-plant/index.html">Athens, AL WTP Imps</a></li>
+                <li><a href="projects/mountain-home-ar-water-treatment-plant/index.html">Mountain Home WTP Imps</a></li>
+                <li><a href="projects/asheville-nc-north-fork-dam/index.html">North Fork Dam Intake Tower &amp; Conduit Repairs</a></li>
+                <li><a href="projects/greeneville-tn-raw-water-intake/index.html">Raw Water Intake Modifications</a></li>
+                <li><a href="projects/knoxville-tn-whitaker-pump-station/index.html">Mark. B. Whitaker Bulk Hypochlorite Conversion</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="navbar-text"><strong>Pump Stations</strong></li>
+                <li><a href="projects/rock-hill-sc-water-treatment-plant/index.html">Water Treatment Plant High Service Plumbing Modifications &amp; Expansion</a></li>
+                <li><a href="projects/cary-nc-plumtree-tanks/index.html">Plumtree Tank Modifications</a></li>
+                <li><a href="projects/lexington-nc-hyattown-pumping-station/index.html">Hyattown Pumping Station</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="navbar-text"><strong>Pipelines</strong></li>
+                <li><a href="projects/hiram-ga-central-ww-pipeline/index.html">Hiram Central WW Pipeline</a></li>
+                <li><a href="projects/rossville-ga-lakeview-sewers/index.html">Lakeview Sewers - Phase IV</a></li>
+                <li><a href="projects/cumming-ga-cheatham-creek-gravity-sewer/index.html">Cheatham Creek Gravity Sewer &amp; Force Main</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="tel:423.263.5561">Questions? Call 1-423-263-5561</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  {% block content %}
+  {% endblock %}
+  <div class="grey">
+    <div class="container-fluid" id="contact-us">
+      <div class="row">
+        <div class="col-md-9">
+          <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a><br>
+          <a href="about-us.html">Who we are</a><br>
+          <a href="services.html">What we do</a><br>
+          <a href="index.html#current-projects">Current projects</a><br>
+          <br>
+          <strong>Looking for a career with Haren?</strong>
+          <p><a href="application.pdf">Download</a>, complete and fax your application to 423-263-5573.</p>
+        </div>
+        <div class="col-md-3 text-center">
+          <p><img src="{% static "img/logo.png" %}" width="60%"></p>
+          <p>
+            <strong>Haren Construction Company, Inc.</strong><br>
+            1715 North Highway 411<br>
+            Etowah, Tennessee<br>
+            Phone: 423-263-5561
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+    <footer class="footer">
+      <div class="container-fluid">
+        <p>States of Operation:  Alabama · Arkansas · Georgia · Kentucky · Louisiana · Mississippi · North Carolina · South Carolina · Tennessee · Texas · Virginia</p>
+        <p>Main Office: 1715 North Highway 411 · PO Box 350 · Etowah, Tennessee 37331-0350
+        For General Information Email: info@harenconstruction.com Or Call 423-263-5561</p>
+      </div>
+    </footer>
+  </body>
+  <script>
+   $(function() {
+     $(".datepicker").datepicker({
+       changeMonth: true,
+       changeYear: true,
+     });
+   });
+   </script>
+</html>

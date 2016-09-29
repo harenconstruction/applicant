@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+  {% block content %}
+  <div class="container-fluid">
+    <div class="container">
+      {% if form.errors %}
+        <div class="alert alert-danger">Errors:
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {% for field in form %}
+            {% if field.errors %}
+            <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      <form method="POST" class="post-form" action="{% url 'application' %}">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+
+        <h1>Work experience</h1>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 35%;">
+            35%
+          </div>
+        </div>
+        <p class="lead">Start with your present or last job and give all employers in past 10 years.</p>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="{{ form.company_name.id_for_label }}">Employer</label>
+              <input type="text" class="form-control" name="{{ form.company_name.html_name }}" id="{{ form.company_name.id_for_label }}" value="{{ form.company_name.value|default_if_none:'' }}" placeholder="Company name">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control" name="{{ form.city.html_name }}" id="{{ form.city.id_for_label }}" value="{{ form.city.value|default_if_none:'' }}" placeholder="City">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <select class="form-control" id="{{ form.state.id_for_label }}" name="{{ form.state.html_name }}">
+             {% for choice, choice_label in form.state.field.choices %}
+             <option value="{{ choice }}"{% if choice == field.value %} selected{% endif %}>{{ choice_label }}</option>
+             {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <input id="{{ form.zipcode.id_for_label }}" name="{{ form.zipcode.html_name }}" value="{{ form.zipcode.value|default_if_none:'' }}" type="text" class="form-control" placeholder="Zip code">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="{{ form.supervisor.id_for_label }}">Supervisor</label>
+              <input type="text" class="form-control" name="{{ form.supervisor.html_name }}" id="{{ form.supervisor.id_for_label }}" value="{{ form.supervisor.value|default_if_none:'' }}" placeholder="Supervisor's name">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="{{ form.phone.id_for_label }}">Phone number</label>
+              <input type="text" class="form-control" name="{{ form.phone.html_name }}" id="{{ form.phone.id_for_label }}" value="{{ form.phone.value|default_if_none:'' }}" placeholder="(123) 456-7890">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="{{ form.email.id_for_label }}">Email address</label>
+              <input type="email" class="form-control" name="{{ form.email.html_name }}" id="{{ form.email.id_for_label }}" value="{{ form.email.value|default_if_none:'' }}" placeholder="name@example.com">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="{{ form.start_date.id_for_label }}">Start date:</label>
+              <input type="text" class="form-control datepicker" name="{{ form.start_date.html_name }}" id="{{ form.start_date.id_for_label }}" value="{{ form.start_date.value|default_if_none:'' }}" placeholder="mm/dd/yyyy">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="{{ form.start_pay.id_for_label }}">Starting pay:</label>
+              <input type="text" class="form-control" name="{{ form.start_pay.html_name }}" id="{{ form.start_pay.id_for_label }}" value="{{ form.start_pay.value|default_if_none:'0.00' }}" placeholder="0.00">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="{{ form.end_date.id_for_label }}">End date:</label>
+              <input type="text" class="form-control datepicker" name="{{ form.end_date.html_name }}" id="{{ form.end_date.id_for_label }}" value="{{ form.end_date.value|default_if_none:'' }}" placeholder="mm/dd/yyyy">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="{{ form.end_pay.id_for_label }}">Ending pay:</label>
+              <input type="text" class="form-control" name="{{ form.end_pay.html_name }}" id="{{ form.end_pay.id_for_label }}" value="{{ form.end_pay.value|default_if_none:'0.00' }}" placeholder="0.00">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Job title:</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your most reason position">
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Tell us about the work you performed:</label>
+              <textarea class="form-control" rows="10"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            {% if wizard.steps.prev %}
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+            {% endif %}
+          </div>
+          <div class="col-md-4 text-center">
+            <a class="btn btn-info" href="#" role="button">Add another employer</a>
+          </div>
+          <div class="col-md-4 text-right">
+            <input type="submit" value="Next >" class="btn btn-primary" role="button">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% endblock %}
