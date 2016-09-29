@@ -63,5 +63,8 @@ target/
 #Ipython Notebook
 .ipynb_checkpoints
 
-#sqlite files
+# sqlite files
 *.sqlite
+
+# Temporary wizard-assist upload folders.
+tmp/
