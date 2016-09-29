@@ -5,6 +5,7 @@ from localflavor.us.models import PhoneNumberField, USPostalCodeField
 WORK_STATUS_LENGTH = 20
 BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
 
+
 class Contact(models.Model):
 
     """A primary contact from the web for a job application."""
@@ -24,6 +25,10 @@ class Contact(models.Model):
 
     def __str__(self):
         return "{} {} {}".format(self.first_name, self.middle_name, self.last_name)
+
+    class Meta:
+        verbose_name = 'Contact'
+        verbose_name_plural = 'Contacts'
 
 
 class EmploymentStatus(models.Model):
@@ -52,6 +57,10 @@ class EmploymentStatus(models.Model):
     def __str__(self):
         return "{} {} {}".format(self.contact.first_name, self.contact.middle_name, self.contact.last_name)
 
+    class Meta:
+        verbose_name = 'Employment Status'
+        verbose_name_plural = 'Employment Status'
+
 
 class WorkExperience(models.Model):
 
@@ -75,6 +84,10 @@ class WorkExperience(models.Model):
     def __str__(self):
         return "{} {} {}".format(self.contact.first_name, self.contact.middle_name, self.contact.last_name)
 
+    class Meta:
+        verbose_name = 'Work Experience'
+        verbose_name_plural = 'Work Experience'
+
 
 class Education(models.Model):
 
@@ -92,6 +105,10 @@ class Education(models.Model):
     def __str__(self):
         return "{} {} {}".format(self.contact.first_name, self.contact.middle_name, self.contact.last_name)
 
+    class Meta:
+        verbose_name = 'Education'
+        verbose_name_plural = 'Education'
+
 
 class AdditionalInformation(models.Model):
 
@@ -103,6 +120,10 @@ class AdditionalInformation(models.Model):
 
     def __str__(self):
         return "{} {} {}".format(self.contact.first_name, self.contact.middle_name, self.contact.last_name)
+
+    class Meta:
+        verbose_name = 'Additional Information'
+        verbose_name_plural = 'Additional Information'
 
 
 class Reference(models.Model):
@@ -116,3 +137,7 @@ class Reference(models.Model):
 
     def __str__(self):
         return "{} {} {}".format(self.contact.first_name, self.contact.middle_name, self.contact.last_name)
+
+    class Meta:
+        verbose_name = 'Reference'
+        verbose_name_plural = 'Reference'
