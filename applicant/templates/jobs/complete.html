@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+  {% block content %}
+  <div class="container-fluid">
+    <div class="container">
+      {% if form.errors %}
+        <div class="alert alert-danger">Errors:
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {% for field in form %}
+            {% if field.errors %}
+            <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      <form method="POST" class="post-form" action="{% url 'application' %}">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+        {{ wizard.form.management_form }}
+
+        <h1>Application Complete</h1>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+            100%
+          </div>
+        </div>
+
+        <p class="lead">Congratulations. Your application is complete and ready to send.</p>
+        <p>By submitting my application, I certify that the information provided in this employment application (an accompanying resume, if any) is true and complete, and I understand that any false information or significant omissions may disqualify me from further consideration for employment and may be justification for my dismissal from employment if discovered at a later date.</p>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="{{ wizard.form.certified.id_for_label }}" name="{{ wizard.form.certified.html_name }}"> I agree.
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div></div><br><br>
+        <div class="row">
+          <div class="col-md-4 text-left">
+            {% if wizard.steps.prev %}
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+            {% endif %}
+          </div>
+          <div class="col-md-4 text-center">&nbsp;</div>
+          <div class="col-md-4 text-right">
+            <input type="submit" value="Submit Application" id="submit_application" class="btn btn-primary" role="button" disabled>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  {% endblock %}
+
+  {% block footer %}
+  <script type="text/javascript">
+  $(function() {
+    $('#{{ wizard.form.certified.id_for_label }}').change(function() {
+      $('#submit_application').prop('disabled', !this.checked);
+    });
+  });
+  </script>
+  {% endblock %}

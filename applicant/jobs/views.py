@@ -16,7 +16,8 @@ TEMPLATES = {"contact": "jobs/contact.html",
              "workexperience": "jobs/workexperience.html",
              "education": "jobs/education.html",
              "additionalinformation": "jobs/additionalinformation.html",
-             "reference": "jobs/reference.html"}
+             "reference": "jobs/reference.html",
+             "complete": "jobs/complete.html"}
 
 
 def all(request, name):
