@@ -62,7 +62,7 @@
             <div class="col-md-3">
             <select class="form-control" id="{{ form.state.id_for_label }}" name="{{ form.state.html_name }}">
              {% for choice, choice_label in form.state.field.choices %}
-             <option value="{{ choice }}"{% if choice == field.value %} selected{% endif %}>{{ choice_label }}</option>
+             <option value="{{ choice }}"{% if choice == form.state.value %} selected{% endif %}>{{ choice_label }}</option>
              {% endfor %}
             </select>
             </div>

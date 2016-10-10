@@ -1,22 +1,107 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
 
+{% block extrahead %}
+<script type="text/javascript">
+    $(function() {
+        $('div.formsetmanage').formset({
+            formTemplate: '#id_form_template',
+            extraClasses: ['row1', 'row2', 'row3'],
+            addText: 'Add Education',
+            deleteText: 'Remove Education',
+            prefix: "{{ wizard.form.prefix }}"
+        })
+    })
+</script>
+<style type="text/css">
+    .add-row {
+        padding-left:18px;
+        background:url({% static "img/add.png" %}) no-repeat left center;
+    }
+    .delete-row {
+        display:block;
+        margin:6px 0 0 0;
+        padding-left:18px;
+        /* background:url({{ MEDIA_URL }}images/delete.png) no-repeat left center; */
+    }
+    .dynamic-form { padding: 5px 15px; }
+    .row1 { background-color: #f9f9f9; }
+    .row2 { background-color: #f3f3f3; }
+    .row3 { background-color: #ededed; }
+</style>
+{% endblock %}
+
   {% block content %}
+  <div id="id_form_template" style="display:none;">
+    {% with wizard.form.empty_form as education_form %}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="{{ education_form.school_name.id_for_label }}">School</label>
+          <input type="text" class="form-control" name="{{ education_form.school_name.html_name }}" id="{{ education_form.school_name.id_for_label }}" value="{{ education_form.school_name.value|default_if_none:'' }}" placeholder="School name">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="text" class="form-control" name="{{ education_form.city.html_name }}" id="{{ education_form.city.id_for_label }}" value="{{ education_form.city.value|default_if_none:'' }}" placeholder="City">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <select class="form-control" id="{{ education_form.state.id_for_label }}" name="{{ education_form.state.html_name }}">
+         {% for choice, choice_label in education_form.state.field.choices %}
+         <option value="{{ choice }}"{% if choice == education_form.state.value %} selected{% endif %}>{{ choice_label }}</option>
+         {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <input id="{{ education_form.zipcode.id_for_label }}" name="{{ education_form.zipcode.html_name }}" value="{{ education_form.zipcode.value|default_if_none:'' }}" type="text" class="form-control" placeholder="Zip code">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="{{ education_form.years_completed.id_for_label }}">Years completed:</label>
+          <input type="text" class="form-control" id="{{ education_form.years_completed.id_for_label }}" name="{{ education_form.years_completed.html_name }}" value="{{ education_form.years_completed.value|default_if_none:'' }}" placeholder="1, 2, 3, etc.">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="{{ education_form.degree_earned.id_for_label }}">Diploma/degree earned:</label>
+          <input type="text" class="form-control" id="{{ education_form.degree_earned.id_for_label }}" name="{{ education_form.degree_earned.html_name }}" value="{{ education_form.degree_earned.value|default_if_none:'' }}" placeholder="None, Associate, Bachelor's, etc.">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="{{ education_form.course_description.id_for_label }}">Describe your course of study:</label>
+          <textarea class="form-control" rows="7" id="{{ education_form.course_description.id_for_label }}" name="{{ education_form.course_description.html_name }}">{{ education_form.course_description.value|default_if_none:'' }}</textarea>
+        </div>
+      </div>
+    </div>
+    {% endwith %}
+  </div>
+
   <div class="container-fluid">
-     <div class="container">
-       {% if form.errors %}
-         <div class="alert alert-danger">Errors:
-           <button type="button" class="close" data-dismiss="alert">×</button>
-           {% for field in form %}
-             {% if field.errors %}
-             <li>{{ field.label }}: {{ field.errors|striptags }}</li>
-             {% endif %}
-           {% endfor %}
-         </div>
+    <div class="container">
+      {% for education_form in wizard.form %}
+        {% if education_form.errors %}
+          <div class="alert alert-danger">Errors:
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {% for field in education_form %}
+              {% if field.errors %}
+                <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+              {% endif %}
+            {% endfor %}
+          </div>
        {% endif %}
+      {% endfor %}
        <form method="POST" class="post-form" action="{% url 'application' %}">
          {% csrf_token %}
          {{ wizard.management_form }}
+         {{ wizard.form.management_form }}
 
          <h1>Education</h1>
          <div class="progress">
@@ -25,62 +110,64 @@
            </div>
          </div>
          <p class="lead">Please include college, university, graduate and professional schools.</p>
+
+         {% for education_form in wizard.form %}
          <div class="row">
            <div class="col-md-12">
              <div class="form-group">
-               <label for="{{ form.school_name.id_for_label }}">School</label>
-               <input type="text" class="form-control" name="{{ form.school_name.html_name }}" id="{{ form.school_name.id_for_label }}" value="{{ form.school_name.value|default_if_none:'' }}" placeholder="School name">
+               <label for="{{ education_form.school_name.id_for_label }}">School</label>
+               <input type="text" class="form-control" name="{{ education_form.school_name.html_name }}" id="{{ education_form.school_name.id_for_label }}" value="{{ education_form.school_name.value|default_if_none:'' }}" placeholder="School name">
              </div>
            </div>
          </div>
          <div class="row">
            <div class="col-md-6">
              <div class="form-group">
-               <input type="text" class="form-control" name="{{ form.city.html_name }}" id="{{ form.city.id_for_label }}" value="{{ form.city.value|default_if_none:'' }}" placeholder="City">
+               <input type="text" class="form-control" name="{{ education_form.city.html_name }}" id="{{ education_form.city.id_for_label }}" value="{{ education_form.city.value|default_if_none:'' }}" placeholder="City">
              </div>
            </div>
            <div class="col-md-3">
-             <select class="form-control" id="{{ form.state.id_for_label }}" name="{{ form.state.html_name }}">
-              {% for choice, choice_label in form.state.field.choices %}
-              <option value="{{ choice }}"{% if choice == field.value %} selected{% endif %}>{{ choice_label }}</option>
+             <select class="form-control" id="{{ education_form.state.id_for_label }}" name="{{ education_form.state.html_name }}">
+              {% for choice, choice_label in education_form.state.field.choices %}
+              <option value="{{ choice }}"{% if choice == education_form.state.value %} selected{% endif %}>{{ choice_label }}</option>
               {% endfor %}
              </select>
            </div>
            <div class="col-md-3">
              <div class="form-group">
-               <input id="{{ form.zipcode.id_for_label }}" name="{{ form.zipcode.html_name }}" value="{{ form.zipcode.value|default_if_none:'' }}" type="text" class="form-control" placeholder="Zip code">
+               <input id="{{ education_form.zipcode.id_for_label }}" name="{{ education_form.zipcode.html_name }}" value="{{ education_form.zipcode.value|default_if_none:'' }}" type="text" class="form-control" placeholder="Zip code">
              </div>
            </div>
          </div>
          <div class="row">
            <div class="col-md-3">
              <div class="form-group">
-               <label for="{{ form.years_completed.id_for_label }}">Years completed:</label>
-               <input type="text" class="form-control" id="{{ form.years_completed.id_for_label }}" name="{{ form.years_completed.html_name }}" value="{{ form.years_completed.value|default_if_none:'' }}" placeholder="1, 2, 3, etc.">
+               <label for="{{ education_form.years_completed.id_for_label }}">Years completed:</label>
+               <input type="text" class="form-control" id="{{ education_form.years_completed.id_for_label }}" name="{{ education_form.years_completed.html_name }}" value="{{ education_form.years_completed.value|default_if_none:'' }}" placeholder="1, 2, 3, etc.">
              </div>
            </div>
            <div class="col-md-3">
              <div class="form-group">
-               <label for="{{ form.degree_earned.id_for_label }}">Diploma/degree earned:</label>
-               <input type="text" class="form-control" id="{{ form.degree_earned.id_for_label }}" name="{{ form.degree_earned.html_name }}" value="{{ form.degree_earned.value|default_if_none:'' }}" placeholder="None, Associate, Bachelor's, etc.">
+               <label for="{{ education_form.degree_earned.id_for_label }}">Diploma/degree earned:</label>
+               <input type="text" class="form-control" id="{{ education_form.degree_earned.id_for_label }}" name="{{ education_form.degree_earned.html_name }}" value="{{ education_form.degree_earned.value|default_if_none:'' }}" placeholder="None, Associate, Bachelor's, etc.">
              </div>
            </div>
            <div class="col-md-6">
              <div class="form-group">
-               <label for="{{ form.course_description.id_for_label }}">Describe your course of study:</label>
-               <textarea class="form-control" rows="7" id="{{ form.course_description.id_for_label }}" name="{{ form.course_description.html_name }}">{{ form.course_description.value|default_if_none:'' }}</textarea>
+               <label for="{{ education_form.course_description.id_for_label }}">Describe your course of study:</label>
+               <textarea class="form-control" rows="7" id="{{ education_form.course_description.id_for_label }}" name="{{ education_form.course_description.html_name }}">{{ education_form.course_description.value|default_if_none:'' }}</textarea>
              </div>
            </div>
          </div>
+         {% endfor %}
+         <div class="formsetmanage"></div><br><br>
          <div class="row">
            <div class="col-md-4 text-left">
              {% if wizard.steps.prev %}
              <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
              {% endif %}
            </div>
-           <div class="col-md-4 text-center">
-             <a class="btn btn-info" href="application4.html" role="button">Add another school</a>
-           </div>
+           <div class="col-md-4 text-center">&nbsp;</div>
            <div class="col-md-4 text-right">
              <input type="submit" value="Next >" class="btn btn-primary" role="button">
            </div>

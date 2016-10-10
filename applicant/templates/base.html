@@ -25,6 +25,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="{% static "js/jquery.formset.js" %}"></script>
+    {% block extrahead %}
+    {% endblock %}
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -113,13 +116,15 @@
         For General Information Email: info@harenconstruction.com Or Call 423-263-5561</p>
       </div>
     </footer>
-  </body>
-  <script>
-   $(function() {
-     $(".datepicker").datepicker({
-       changeMonth: true,
-       changeYear: true,
+    <script>
+     $(function() {
+       $(".datepicker").datepicker({
+         changeMonth: true,
+         changeYear: true,
+       });
      });
-   });
-   </script>
+     </script>
+     {% block footer %}
+     {% endblock %}
+  </body>
 </html>

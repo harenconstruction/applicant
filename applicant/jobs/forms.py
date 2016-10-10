@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import formset_factory
 from django.template.loader import render_to_string
 from localflavor.us.forms import USZipCodeField
 
@@ -50,6 +51,12 @@ class WorkExperienceForm(forms.ModelForm):
                   'phone', 'email', 'start_date', 'start_pay', 'end_date',
                   'end_pay', 'job_title', 'work_information',)
 
+# http://stackoverflow.com/questions/22770993/can-a-step-be-repeated-in-django-1-6-form-wizard
+# https://docs.djangoproject.com/en/1.10/topics/forms/formsets/
+# https://news.ycombinator.com/item?id=5670997
+# https://github.com/elo80ka/django-dynamic-formset/blob/master/docs/usage.rst
+WorkExperienceFormset = formset_factory(WorkExperienceForm, extra=0)
+
 
 class EducationForm(forms.ModelForm):
 
@@ -57,6 +64,9 @@ class EducationForm(forms.ModelForm):
         model = Education
         fields = ('school_name', 'city', 'state', 'zipcode', 'years_completed',
                   'degree_earned', 'course_description',)
+
+
+EducationFormset = formset_factory(EducationForm, extra=0)
 
 
 class AdditionalInformationForm(forms.ModelForm):
@@ -71,3 +81,16 @@ class ReferenceForm(forms.ModelForm):
     class Meta:
         model = Reference
         fields = ('reference_name', 'reference_location', 'reference_phone',)
+
+
+ReferenceFormset = formset_factory(ReferenceForm, extra=3)
+
+
+''' This class should not be saved, rather it only copies the field `certified`
+for later use in ContactForm.'''
+
+class CompleteForm(forms.ModelForm):
+
+    class Meta:
+        model = Contact
+        fields = ('certified',)

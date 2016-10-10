@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+  {% block content %}
+  <div class="container-fluid">
+    <div class="container">
+      {% if form.errors %}
+        <div class="alert alert-danger">Errors:
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {% for field in form %}
+            {% if field.errors %}
+            <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      <form method="POST" class="post-form" action="{% url 'application' %}">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+        {{ wizard.form.management_form }}
+
+        <h1>References</h1>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+            85%
+          </div>
+        </div>
+        <p class="lead">Give names, locations and phone numbers of 3 references who are not related to you and are not previous employers.</p>
+        {% for reference_form in wizard.form %}
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="{{ reference_form.reference_name.id_for_label }}">Reference #{{ forloop.counter }}</label>
+              <input type="text" class="form-control" id="{{ reference_form.reference_name.id_for_label }}" name="{{ reference_form.reference_name.html_name }}" value="{{ reference_form.reference_name.value|default_if_none:'' }}" placeholder="First and last name">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="{{ reference_form.reference_location.id_for_label }}">Location</label>
+              <input type="text" class="form-control" id="{{ reference_form.reference_location.id_for_label }}" name="{{ reference_form.reference_location.html_name }}" value="{{ reference_form.reference_location.value|default_if_none:'' }}" placeholder="City, State">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="{{ reference_form.reference_phone.id_for_label }}">Phone number</label>
+              <input type="text" class="form-control" id="{{ reference_form.reference_phone.id_for_label }}" name="{{ reference_form.reference_phone.html_name }}" value="{{ reference_form.reference_phone.value|default_if_none:'' }}" placeholder="(123) 456-7890">
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <div></div><br><br>
+        <div class="row">
+          <div class="col-md-4 text-left">
+            {% if wizard.steps.prev %}
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+            {% endif %}
+          </div>
+          <div class="col-md-4 text-center">&nbsp;</div>
+          <div class="col-md-4 text-right">
+            <input type="submit" value="Next >" class="btn btn-primary" role="button">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% endblock %}
