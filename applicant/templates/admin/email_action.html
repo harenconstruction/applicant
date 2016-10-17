@@ -1,0 +1,22 @@
+# The template
+{% extends "admin/base_site.html" %}
+{% load i18n l10n %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <p>The following contacts will have their information sent to the email below:</p>
+
+    <ul>{{ queryset|unordered_list }}</ul>
+
+    <div>
+    {% for obj in queryset %}
+    <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk|unlocalize }}" />
+    {% endfor %}
+    <input type="hidden" name="action" value="email_contacts" />
+    <input type="hidden" name="post" value="yes" />
+    Email contacts to: <input type="text" name="email" value="" /><br><br>
+    <input type="submit" value="{% trans "Submit" %}" />
+    </div>
+</form>
+{% endblock %}
