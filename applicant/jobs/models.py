@@ -22,6 +22,8 @@ class Contact(models.Model):
     email = models.EmailField(max_length=254)
     work_eligibility_proof = models.BooleanField(blank=False, default=True, choices=BOOL_CHOICES)
     certified = models.BooleanField(blank=True, default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{} {} {}".format(self.first_name, self.middle_name, self.last_name)
