@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from jobs.views import index_form
+from jobs.views import index_form, applicant_thanks
 
 from jobs.forms import (ContactForm, EmploymentStatusForm,
                         WorkExperienceFormset, EducationFormset,
@@ -21,4 +21,5 @@ urlpatterns = [
 
     # application
     url(r'^application/$', ApplicationWizard.as_view(FORMS), name='application'),
+    url(r'^application/thanks$', applicant_thanks, name='thanks')
 ]

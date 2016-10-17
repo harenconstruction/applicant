@@ -37,6 +37,12 @@ def index_form(request):
     return render(request, './pages/index.html', context_dict)
 
 
+def applicant_thanks(request):
+    context_dict = {}
+
+    return render(request, './jobs/thanks.html', context_dict)
+
+
 class ApplicationWizard(SessionWizardView):
 
     file_storage = FileSystemStorage(location=os.path.join(settings.TEMP_PATH, 'file_uploads'))
@@ -44,9 +50,41 @@ class ApplicationWizard(SessionWizardView):
     def get_template_names(self):
         return [TEMPLATES[self.steps.current]]
 
-    def done(self, form_list, **kwargs):
+    def done(self, form_list, form_dict, **kwargs):
         form_data = process_form_data(form_list)
-        return HttpResponseRedirect('jobs/thanks.html', {'form_data': form_data})
+
+        contact = form_dict['contact'].save()
+        complete = form_dict['complete']
+        contact.certified = complete.cleaned_data['certified']
+        contact.save()
+
+        employmentstatus = form_dict['employmentstatus']
+        employmentstatus = employmentstatus.save(commit=False)
+        employmentstatus.contact_id = contact.id
+        employmentstatus.save()
+
+        for workexperience in form_dict['workexperience']:
+            workexperience = workexperience.save(commit=False)
+            workexperience.contact_id = contact.id
+            workexperience.save()
+
+        for education in form_dict['education']:
+            education = education.save(commit=False)
+            education.contact_id = contact.id
+            education.save()
+
+        additionalinformation = form_dict['additionalinformation'].save(commit=False)
+        additionalinformation.contact_id = contact.id
+        additionalinformation.save()
+
+        for reference in form_dict['reference']:
+            reference = reference.save(commit=False)
+            reference.contact_id = contact.id
+            reference.save()
+
+        # email this crud.
+
+        return HttpResponseRedirect('thanks', {'form_data': form_data})
 
 
 def process_form_data(form_list):
