@@ -120,6 +120,23 @@ USE_L10N = True
 
 USE_TZ = True
 
+#For email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = True
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_HOST_USER = ''
+
+#Must generate specific password for your app in [gmail settings][1]
+EMAIL_HOST_PASSWORD = ''
+
+EMAIL_PORT = 587
+
+#This did the trick
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 
 # Media (user uploaded files)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
