@@ -1,0 +1,73 @@
+<strong>The following job application was submitted on:</strong> {{ contact.created_at }} <br><br>
+
+<strong>I. Contact Information</strong><br><br>
+<strong>Full name: </strong>{{ contact.first_name }} {{ contact.middle_name }} {{ contact.last_name }}<br>
+<strong>Address: </strong> {{ contact.address }}<br>{{ contact.address2 }}<br>
+<strong>City: </strong> {{ contact.city }}<br>
+<strong>State: </strong> {{ contact.state }}<br>
+<strong>Zip: </strong> {{ contact.zipcode }}<br>
+<strong>Phone: </strong> {{ contact.phone }}<br>
+<strong>Email: </strong> {{ contact.email }}<br>
+<strong>Work Eligibility: </strong> {{ contact.work_eligibility_proof }}<br><br>
+
+<strong>II. Employment Status</strong><br><br>
+
+{% for es in contact.employmentstatus.all %}
+<strong>Legal for work: </strong> {{ es.legal_to_work }}<br>
+<strong>Available to work: </strong> {{ es.available_to_work }}<br>
+<strong>Start work date: </strong> {{ es.start_work_date }}<br>
+<strong>Currently employed? </strong> {{ es.currently_employed }}<br>
+<strong>OK to contact employer? </strong> {{ es.contact_employer_ok }}<br>
+<strong>Laid off: </strong> {{ es.layoff }}<br>
+<strong>Previously filed? </strong> {{ es.filed_previously }}<br>
+<strong>Filed previously on: <strong> {{ es.filed_previously_date }}<br>
+<strong>Employed at Haren Previously? <strong> {{ es.employed_previously }}<br>
+<strong>Employed on: </strong> {{ es.employed_previously_date }}<br>
+<strong>Convicted felon? </strong> {{ es.convicted_felon }}<br>
+<strong>Convicted information: <strong> {{ es.convicted_information }}<br><br>
+{% endfor %}
+
+<strong>III. Work Experience</strong><br><br>
+
+{% for we in contact.workexperience.all %}
+<strong>Company name: </strong> {{ we.company_name }}<br>
+<strong>City: </strong> {{ we.city }}<br>
+<strong>State: </strong> {{ we.state }}<br>
+<strong>Zip: </strong> {{ we.zipcode }}<br>
+<strong>Supervisor: </strong> {{ we.supervisor }}<br>
+<strong>Phone: </strong> {{ we.phone }}<br>
+<strong>Email: </strong> {{ we.email }}<br>
+<strong>Start date: </strong> {{ we.start_date }}<br>
+<strong>Start pay: </strong> {{ we.start_pay }}<br>
+<strong>End date: </strong> {{ we.end_date }}<br>
+<strong>End pay: </strong> {{ we.end_pay }}<br>
+<strong>Job title: </strong> {{ we.job_title }}<br>
+<strong>Work information: </strong> {{ we.work_information }}<br><br>
+{% endfor %}
+
+<strong>IV. Education</strong><br><br>
+
+{% for education in contact.education.all %}
+<strong>School name: </strong> {{ education.school_name }}<br>
+<strong>City: </strong> {{ education.city }}<br>
+<strong>State: </strong> {{ education.state }}<br>
+<strong>Zip: </strong> {{ education.zipcode }}<br>
+<strong>Years completed: </strong> {{ education.years_completed }}<br>
+<strong>Degree earned: </strong> {{ education.degree_earned }}<br>
+<strong>Course description: </strong> {{ education.course_description }}<br><br>
+{% endfor %}
+
+<strong>V. Additional Information<strong><br><br>
+
+{% for ai in contact.additionalinformation.all %}
+<strong>Summary skills: </strong> {{ ai.summary_skills }}<br>
+<strong>Resume: </strong> - See Attachment.<br><br>
+{% endfor %}
+
+<strong>VI. References</strong><br><br>
+
+{% for r in contact.reference.all %}
+<strong>Name: </strong> {{ r.reference_name }}<br>
+<strong>Location: </strong> {{ r.reference_location }}<br>
+<strong>Phone: </strong> {{ r.reference_phone }}<br><br>
+{% endfor %}

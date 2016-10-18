@@ -42,7 +42,7 @@ class EmploymentStatus(models.Model):
         ('parttime', 'Part-time'),
     )
 
-    contact = models.ForeignKey(Contact)
+    contact = models.ForeignKey(Contact, related_name='employmentstatus')
     legal_to_work = models.BooleanField(blank=False, default=True, choices=BOOL_CHOICES)
     available_to_work = models.CharField(max_length=WORK_STATUS_LENGTH, choices=WORK_STATUS, default=WORK_STATUS[0][0])
     start_work_date = models.DateField(verbose_name="Available for work on")
@@ -68,7 +68,7 @@ class WorkExperience(models.Model):
 
     """A contact's past work experience contact and related information."""
 
-    contact = models.ForeignKey(Contact)
+    contact = models.ForeignKey(Contact, related_name='workexperience')
     company_name = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     state = USPostalCodeField()
@@ -95,7 +95,7 @@ class Education(models.Model):
 
     """A contact's past education information."""
 
-    contact = models.ForeignKey(Contact)
+    contact = models.ForeignKey(Contact, related_name='education')
     school_name = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     state = USPostalCodeField()
@@ -116,7 +116,7 @@ class AdditionalInformation(models.Model):
 
     """A contact's qualifications, experience, and resume."""
 
-    contact = models.ForeignKey(Contact)
+    contact = models.ForeignKey(Contact, related_name='additionalinformation')
     summary_skills = models.TextField(blank=True)
     resume = models.FileField(upload_to='resumes')
 
@@ -132,7 +132,7 @@ class Reference(models.Model):
 
     """References for a given contact."""
 
-    contact = models.ForeignKey(Contact)
+    contact = models.ForeignKey(Contact, related_name='reference')
     reference_name = models.CharField(max_length=255)
     reference_location = models.CharField(max_length=255)
     reference_phone = PhoneNumberField()
