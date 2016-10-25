@@ -1,3 +1,5 @@
+import re
+
 from django.contrib import admin
 from django.contrib.admin import helpers
 from django.conf import settings
@@ -51,16 +53,19 @@ class ContactAdmin(admin.ModelAdmin):
     ]
 
     model = Contact
+    list_filter = ('created_at', 'updated_at', 'state')
     list_display = ('__str__', 'created_at')
+    search_fields = ['first_name','middle_name','last_name','email','phone',]
 
     def email_contacts(self, request, queryset):
         if request.POST.get('post'):
             if 'email' in request.POST:
-                for i in queryset:
-                    if i.first_name:
-                        self.message_user(request, "Sending '{}' to {}".format(i.first_name, request.POST['email']))
-                        send_templated_email('Job application contact', 'email/applicant_email.html', {"contact": i}, request.POST['email'],
-                                                sender=None, bcc=None, fail_silently=True, files=None)
+                for email in re.split(r'[, ]*', request.POST['email']):
+                    for i in queryset:
+                        if i.first_name:
+                            self.message_user(request, "Sending '{}' to {}".format(i.first_name, email))
+                            send_templated_email('Job application contact', 'email/applicant_email.html', {"contact": i, "message": request.POST['message']}, email,
+                                                    sender=None, bcc=None, fail_silently=True, files=None)
 
                 self.message_user(request, "Contact information emailed successfully.")
             else:

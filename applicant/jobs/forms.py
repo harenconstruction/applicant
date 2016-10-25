@@ -48,8 +48,9 @@ class WorkExperienceForm(forms.ModelForm):
     class Meta:
         model = WorkExperience
         fields = ('company_name', 'city', 'state', 'zipcode', 'supervisor',
-                  'phone', 'email', 'start_date', 'start_pay', 'end_date',
-                  'end_pay', 'job_title', 'work_information',)
+                  'phone', 'email', 'start_date', 'start_pay', 'start_pay_cycle',
+                  'end_date', 'end_pay', 'end_pay_cycle', 'job_title',
+                  'work_information',)
 
 # http://stackoverflow.com/questions/22770993/can-a-step-be-repeated-in-django-1-6-form-wizard
 # https://docs.djangoproject.com/en/1.10/topics/forms/formsets/

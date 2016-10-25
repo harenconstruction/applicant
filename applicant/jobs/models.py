@@ -4,6 +4,10 @@ from localflavor.us.models import PhoneNumberField, USPostalCodeField
 
 WORK_STATUS_LENGTH = 20
 BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
+PAY_CYCLE_LENGTH = 8
+PAY_CYCLE_CHOICES = (('hourly', 'Hourly'), ('weekly', 'Weekly'),
+                     ('biweekly', 'Bi-Weekly'), ('monthly', 'Monthly'),
+                     ('annually', 'Annually'))
 
 
 class Contact(models.Model):
@@ -24,6 +28,7 @@ class Contact(models.Model):
     certified = models.BooleanField(blank=True, default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    notes = models.TextField(blank=True)
 
     def __str__(self):
         return "{} {} {}".format(self.first_name, self.middle_name, self.last_name)
@@ -77,9 +82,11 @@ class WorkExperience(models.Model):
     phone = PhoneNumberField()
     email = models.EmailField(max_length=254)
     start_date = models.DateField(verbose_name="Started work on")
-    start_pay = models.DecimalField(max_digits=6, decimal_places=2)
+    start_pay = models.DecimalField(max_digits=10, decimal_places=2)
+    start_pay_cycle = models.CharField(max_length=PAY_CYCLE_LENGTH, choices=PAY_CYCLE_CHOICES, default=PAY_CYCLE_CHOICES[0][0])
     end_date = models.DateField(verbose_name="Ended work on")
-    end_pay = models.DecimalField(max_digits=6, decimal_places=2)
+    end_pay = models.DecimalField(max_digits=10, decimal_places=2)
+    end_pay_cycle = models.CharField(max_length=PAY_CYCLE_LENGTH, choices=PAY_CYCLE_CHOICES, default=PAY_CYCLE_CHOICES[0][0])
     job_title = models.CharField(max_length=255)
     work_information = models.TextField(blank=True)
 
@@ -96,7 +103,7 @@ class Education(models.Model):
     """A contact's past education information."""
 
     contact = models.ForeignKey(Contact, related_name='education')
-    school_name = models.CharField(max_length=255)
+    school_name = models.CharField(max_length=255, blank=False)
     city = models.CharField(max_length=255)
     state = USPostalCodeField()
     zipcode = models.CharField(max_length=10)
