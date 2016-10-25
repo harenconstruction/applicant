@@ -17,27 +17,27 @@ from jobs.email import send_templated_email
 # admin.site.register(Reference)
 
 
-class EmploymentStatusInline(admin.TabularInline):
+class EmploymentStatusInline(admin.StackedInline):
     model = EmploymentStatus
     max_num = 1
     extra = 0
 
 
-class WorkExperienceInline(admin.TabularInline):
+class WorkExperienceInline(admin.StackedInline):
     model = WorkExperience
 
 
-class EducationInline(admin.TabularInline):
+class EducationInline(admin.StackedInline):
     model = Education
 
 
-class AdditionalInformationInline(admin.TabularInline):
+class AdditionalInformationInline(admin.StackedInline):
     model = AdditionalInformation
     max_num = 1
     extra = 0
 
 
-class ReferenceInline(admin.TabularInline):
+class ReferenceInline(admin.StackedInline):
     model = Reference
     max_num = 3
     extra = 0
