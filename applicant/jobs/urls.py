@@ -16,10 +16,12 @@ FORMS = [("contact", ContactForm),
          ("complete", CompleteForm)]
 
 urlpatterns = [
-    url(r'^index.html$', index_form, name='index'),
-    url(r'^$', index_form, name='index'),
+    # url(r'^index.html$', index_form, name='index'),
+    # url(r'^$', index_form, name='index'),
 
     # application
+    url(r'^index.html$', ApplicationWizard.as_view(FORMS), name='application'),
+    url(r'^$', ApplicationWizard.as_view(FORMS), name='application'),
     url(r'^application/$', ApplicationWizard.as_view(FORMS), name='application'),
     url(r'^application/thanks$', applicant_thanks, name='thanks')
 ]
