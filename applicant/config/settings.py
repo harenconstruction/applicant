@@ -131,7 +131,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_USE_TLS = True
 
-EMAIL_HOST = 'harenconstruction.com'
+EMAIL_HOST = 'smtp.office365.com'
 
 EMAIL_HOST_USER = 'jobs@harenconstruction.com'
 
