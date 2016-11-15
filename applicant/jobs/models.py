@@ -55,9 +55,9 @@ class EmploymentStatus(models.Model):
     contact_employer_ok = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
     layoff = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
     filed_previously = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
-    filed_previously_date = models.DateField(verbose_name="Previously filed on work on")
+    filed_previously_date = models.DateField(default=None, blank=True, verbose_name="Previously filed on work on")
     employed_previously = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
-    employed_previously_date = models.DateField(verbose_name="Previously employed on")
+    employed_previously_date = models.DateField(default=None, blank=True, verbose_name="Previously employed on")
     convicted_felon = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
     convicted_information = models.TextField(blank=True)
 
@@ -125,7 +125,7 @@ class AdditionalInformation(models.Model):
 
     contact = models.ForeignKey(Contact, related_name='additionalinformation')
     summary_skills = models.TextField(blank=True)
-    resume = models.FileField(upload_to='resumes')
+    resume = models.FileField(blank=True, upload_to='resumes')
 
     def __str__(self):
         return "{} {} {}".format(self.contact.first_name, self.contact.middle_name, self.contact.last_name)
