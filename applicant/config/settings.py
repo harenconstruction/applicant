@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = '/home/applicant/' #os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -55,7 +55,7 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'config.urls'
 
-TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
+TEMPLATE_PATH = os.path.join('/home/applicant/applicant/applicant/', 'templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -145,22 +145,22 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # Media (user uploaded files)
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join('/home/applicant/', 'media')
 MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_PATH = os.path.join(BASE_DIR, 'static')
+STATIC_PATH = os.path.join('/home/applicant/', 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join('/home/applicant/', "static"),
 ]
 STATIC_URL = '/static/'
 
 # Fixtures for developer data.
 FIXTURE_DIRS = [
-    os.path.join(BASE_DIR, "fixtures"),
+    os.path.join('/home/applicant/applicant/applicant/', "fixtures"),
 ]
 
 # temporary path for wizard assisted file uploads
-TEMP_PATH = os.path.join(BASE_DIR, 'tmp')
+TEMP_PATH = os.path.join('/home/applicant/', 'tmp')
