@@ -152,9 +152,10 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_PATH = os.path.join('/home/applicant/', 'static')
-STATICFILES_DIRS = [
-    os.path.join('/home/applicant/', "static"),
-]
+STATIC_ROOT = STATIC_PATH
+#STATICFILES_DIRS = [
+#    os.path.join('/home/applicant/', "static"),
+#]
 STATIC_URL = '/static/'
 
 # Fixtures for developer data.
