@@ -1,3 +1,6 @@
+import uuid
+import os
+
 from django.db import models
 from django.utils import timezone
 from localflavor.us.models import PhoneNumberField, USPostalCodeField
@@ -8,6 +11,12 @@ PAY_CYCLE_LENGTH = 8
 PAY_CYCLE_CHOICES = (('hourly', 'Hourly'), ('weekly', 'Weekly'),
                      ('biweekly', 'Bi-Weekly'), ('monthly', 'Monthly'),
                      ('annually', 'Annually'))
+
+
+def get_file_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4(), ext)
+    return os.path.join('resumes', filename)
 
 
 class Contact(models.Model):
@@ -55,9 +64,9 @@ class EmploymentStatus(models.Model):
     contact_employer_ok = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
     layoff = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
     filed_previously = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
-    filed_previously_date = models.DateField(default=None, blank=True, verbose_name="Previously filed on work on")
+    filed_previously_date = models.DateField(null=True, blank=True, verbose_name="Previously filed on work on")
     employed_previously = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
-    employed_previously_date = models.DateField(default=None, blank=True, verbose_name="Previously employed on")
+    employed_previously_date = models.DateField(null=True, blank=True, verbose_name="Previously employed on")
     convicted_felon = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
     convicted_information = models.TextField(blank=True)
 
@@ -125,7 +134,7 @@ class AdditionalInformation(models.Model):
 
     contact = models.ForeignKey(Contact, related_name='additionalinformation')
     summary_skills = models.TextField(blank=True)
-    resume = models.FileField(blank=True, upload_to='resumes')
+    resume = models.FileField(blank=True, upload_to=get_file_path)
 
     def __str__(self):
         return "{} {} {}".format(self.contact.first_name, self.contact.middle_name, self.contact.last_name)
