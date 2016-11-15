@@ -153,9 +153,9 @@ MEDIA_URL = '/media/'
 
 STATIC_PATH = os.path.join('/home/applicant/', 'static')
 STATIC_ROOT = STATIC_PATH
-#STATICFILES_DIRS = [
-#    os.path.join('/home/applicant/', "static"),
-#]
+STATICFILES_DIRS = [
+    os.path.join('/home/applicant/applicant/applicant/', "static"),
+]
 STATIC_URL = '/static/'
 
 # Fixtures for developer data.
