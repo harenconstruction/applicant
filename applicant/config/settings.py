@@ -79,11 +79,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+# 'ENGINE': 'django.db.backends.sqlite3',
+# 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'applicant',
+        'USER': 'applicant',
+        'PASSWORD': 's34vZuhX&ChX@Lre0%kL',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -125,12 +131,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_USE_TLS = True
 
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'harenconstruction.com'
 
-EMAIL_HOST_USER = ''
+EMAIL_HOST_USER = 'jobs@harenconstruction.com'
 
 #Must generate specific password for your app in [gmail settings][1]
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'HarenC123'
 
 EMAIL_PORT = 587
 
