@@ -136,7 +136,7 @@ EMAIL_HOST = 'smtp.office365.com'
 EMAIL_HOST_USER = 'jobs@harenconstruction.com'
 
 #Must generate specific password for your app in [gmail settings][1]
-EMAIL_HOST_PASSWORD = 'HarenC123'
+EMAIL_HOST_PASSWORD = 'Wadu4797' # 'HarenC123'
 
 EMAIL_PORT = 587
 
