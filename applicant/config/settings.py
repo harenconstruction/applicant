@@ -23,7 +23,7 @@ BASE_DIR = '/home/applicant/' #os.path.dirname(os.path.dirname(os.path.abspath(_
 SECRET_KEY = 'ochd%u83ox3s**zfr(aqobc5p4^%fo8%7(&-i4@px9%revak5f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -165,3 +165,24 @@ FIXTURE_DIRS = [
 
 # temporary path for wizard assisted file uploads
 TEMP_PATH = os.path.join('/home/applicant/', 'tmp')
+
+# logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/home/applicant/applicant.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
