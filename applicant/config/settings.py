@@ -25,7 +25,7 @@ SECRET_KEY = 'ochd%u83ox3s**zfr(aqobc5p4^%fo8%7(&-i4@px9%revak5f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'jobs.harenconstruction.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'jobs.harenconstruction.com', '104.236.59.248']
 
 
 # Application definition
