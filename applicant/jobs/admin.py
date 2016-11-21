@@ -65,7 +65,7 @@ class ContactAdmin(admin.ModelAdmin):
                         if i.first_name:
                             resume = ''
                             for ai in i.additionalinformation.all():
-                                resume = ai.resume
+                                resume = ai.resume.url
                             self.message_user(request, "Sending '{}' to {}".format(i.first_name, email))
                             send_templated_email('Job application contact', 'email/applicant_email.html', {"contact": i, "message": request.POST['message']}, email,
                                                     sender=None, bcc=None, fail_silently=True, files=resume)
