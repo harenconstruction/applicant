@@ -85,7 +85,7 @@ class ApplicationWizard(SessionWizardView):
 
         # email this crud.
         # application@harenconstruction.com
-        if ai.resume:
+        if additionalinformation.resume:
             resume = '/home/applicant' + additionalinformation.resume.url
             send_templated_email('Job application contact', 'email/applicant_email.html', {"contact": contact, "message": "A new job application has been created."}, "kim@duncaningram.com",
                                     sender=None, bcc=None, fail_silently=True, files=resume)
