@@ -87,10 +87,10 @@ class ApplicationWizard(SessionWizardView):
         # application@harenconstruction.com
         if additionalinformation.resume:
             resume = '/home/applicant' + additionalinformation.resume.url
-            send_templated_email('Job application contact', 'email/applicant_email.html', {"contact": contact, "message": "A new job application has been created."}, "kim@duncaningram.com",
+            send_templated_email('Job application contact', 'email/applicant_email.html', {"contact": contact, "message": "A new job application has been created."}, "application@harenconstruction.com",
                                     sender=None, bcc=None, fail_silently=True, files=resume)
         else:
-            send_templated_email('Job application contact', 'email/applicant_email.html', {"contact": contact, "message": "A new job application has been created."}, "kim@duncaningram.com",
+            send_templated_email('Job application contact', 'email/applicant_email.html', {"contact": contact, "message": "A new job application has been created."}, "application@harenconstruction.com",
                                     sender=None, bcc=None, fail_silently=True)
 
 
