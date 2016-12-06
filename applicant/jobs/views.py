@@ -10,6 +10,7 @@ from django.template import TemplateDoesNotExist
 from formtools.wizard.views import SessionWizardView
 
 from config import settings
+from jobs.email import send_templated_email
 
 TEMPLATES = {"contact": "jobs/contact.html",
              "employmentstatus": "jobs/employmentstatus.html",
@@ -83,6 +84,15 @@ class ApplicationWizard(SessionWizardView):
             reference.save()
 
         # email this crud.
+        # application@harenconstruction.com
+        if ai.resume:
+            resume = '/home/applicant' + additionalinformation.resume.url
+            send_templated_email('Job application contact', 'email/applicant_email.html', {"contact": contact, "message": "A new job application has been created."}, "kim@duncaningram.com",
+                                    sender=None, bcc=None, fail_silently=True, files=resume)
+        else:
+            send_templated_email('Job application contact', 'email/applicant_email.html', {"contact": contact, "message": "A new job application has been created."}, "kim@duncaningram.com",
+                                    sender=None, bcc=None, fail_silently=True)
+
 
         return HttpResponseRedirect('thanks', {'form_data': form_data})
 
