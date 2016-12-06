@@ -65,7 +65,8 @@ class ContactAdmin(admin.ModelAdmin):
                         if i.first_name:
                             resume = ''
                             for ai in i.additionalinformation.all():
-                                resume = '/home/applicant' + ai.resume.url
+                                if ai.resume:
+                                    resume = '/home/applicant' + ai.resume.url
                             self.message_user(request, "Sending '{}' to {}".format(i.first_name, email))
                             if resume is not '':
                                 send_templated_email('Job application contact', 'email/applicant_email.html', {"contact": i, "message": request.POST['message']}, email,
