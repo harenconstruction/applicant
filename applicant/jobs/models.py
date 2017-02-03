@@ -24,7 +24,7 @@ class Contact(models.Model):
     """A primary contact from the web for a job application."""
 
     first_name = models.CharField(max_length=64)
-    middle_name = models.CharField(max_length=64)
+    middle_name = models.CharField(max_length=64, blank=True, null=True)
     last_name = models.CharField(max_length=64)
     address = models.CharField(max_length=255)
     address2 = models.CharField(max_length=255, null=True, blank=True)
