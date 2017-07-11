@@ -1,7 +1,11 @@
 # applicant #
 
-The admin and management application for Haren Construction Company's 
+The admin and management application for Haren Construction Company's
 job application form.
+
+## Documentation ##
+
+For full documentation, please read [here](documentation/index.md).
 
 ## Running ##
 
