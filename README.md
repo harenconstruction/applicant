@@ -19,13 +19,13 @@ Or if you want to start and refresh from scratch:
   $ cd /path/to/project
   $ ./vagrant-refresh.sh
 
-After running, the site should be accessible at: http://127.0.0.1:8081/
+After running, the site should be accessible at: http://127.0.0.1:8095/
 
 ## Admin Interface ###
 
 When running with vagrant, the default admin interface is at:
 
-    URL: http://127.0.0.1:8081/admin/
+    URL: http://127.0.0.1:8095/admin/
     Username: admin
     Password: applicant
 
