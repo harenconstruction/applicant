@@ -5,6 +5,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Local development files that should be ignored.
+/local/
+
 # C extensions
 *.so
 
