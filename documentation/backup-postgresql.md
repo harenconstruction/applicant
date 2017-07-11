@@ -14,3 +14,7 @@ to backup the data in production.
   a custom output format (-Fc) compressed and suitable for importing, while preserving foreign
   key ids (-o) using the user applicant (-U) to connect to the database applicant, then save the
   resulting output to /root/backups/applicant.dump.  
+
+5. To restore, inside vagrant:
+
+        (env) vagrant@vagrant:/vagrant/local$ sudo -u postgres pg_restore -C -d applicant applicant.dump
