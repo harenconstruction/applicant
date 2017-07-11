@@ -12,7 +12,7 @@ then
     sudo -u postgres createdb applicant -O applicant || exit 1
 
     # Install the virtualenv in ~vagrant but the project in /vagrant.
-    sudo -u vagrant -s <<'EOF' || exit 1
+    sudo -H -u vagrant -s <<'EOF' || exit 1
 virtualenv -p /usr/bin/python3.5 /home/vagrant/env
 source /home/vagrant/env/bin/activate
 cd /vagrant/
@@ -24,8 +24,9 @@ EOF
 
     cat <<'EOF' > /etc/supervisor/conf.d/runserver.conf
 [program:runserver]
+environment=DJANGO_ENV=development
 command=/home/vagrant/env/bin/python manage.py runserver 0.0.0.0:8000
-directory=/vagrant/applicant_project
+directory=/vagrant/applicant
 autostart=0
 EOF
     supervisorctl reload || exit 1
