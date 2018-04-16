@@ -47,6 +47,13 @@ class Contact(models.Model):
         verbose_name_plural = 'Contacts'
 
 
+class WorkState(models.Model):
+    state = USPostalCodeField()
+
+    def __str__(self):
+        return "{}".format(self.state)
+
+
 class EmploymentStatus(models.Model):
 
     """The employment status of a primary contact."""
@@ -59,6 +66,7 @@ class EmploymentStatus(models.Model):
     contact = models.ForeignKey(Contact, related_name='employmentstatus')
     legal_to_work = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
     available_to_work = models.CharField(max_length=WORK_STATUS_LENGTH, choices=WORK_STATUS, default=None)
+    states_available_work = models.ManyToManyField(WorkState, verbose_name='States available for work')
     start_work_date = models.DateField(verbose_name="Available for work on")
     currently_employed = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
     contact_employer_ok = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)

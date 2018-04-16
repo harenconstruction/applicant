@@ -20,6 +20,7 @@
 {% for es in contact.employmentstatus.all %}
 <strong>Legal for work: </strong> {{ es.legal_to_work }}<br>
 <strong>Available to work: </strong> {{ es.available_to_work }}<br>
+<strong>States available to work: </strong> {% for state in es.states_available_work.all %}{{ state }} {% endfor %}<br>
 <strong>Start work date: </strong> {{ es.start_work_date }}<br>
 <strong>Currently employed? </strong> {{ es.currently_employed }}<br>
 <strong>OK to contact employer? </strong> {{ es.contact_employer_ok }}<br>
