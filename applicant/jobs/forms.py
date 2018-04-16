@@ -3,7 +3,8 @@ from django.forms import formset_factory
 from django.template.loader import render_to_string
 from localflavor.us.forms import USZipCodeField
 
-from jobs.models import Contact, EmploymentStatus, WorkExperience, Education, AdditionalInformation, Reference
+from jobs.models import (Contact, WorkState, EmploymentStatus, WorkExperience,
+                         Education, AdditionalInformation, Reference)
 
 
 class ContactForm(forms.ModelForm):
@@ -28,6 +29,7 @@ class EmploymentStatusForm(forms.ModelForm):
         widgets = {
             'legal_to_work': forms.RadioSelect,
             'available_to_work': forms.RadioSelect,
+            'states_available_work': forms.CheckboxSelectMultiple,
             'currently_employed': forms.RadioSelect,
             'contact_employer_ok': forms.RadioSelect,
             'layoff': forms.RadioSelect,
@@ -36,9 +38,9 @@ class EmploymentStatusForm(forms.ModelForm):
             'convicted_felon': forms.RadioSelect,
             'start_work_date': forms.DateInput(attrs={'class':'datepicker'})
         }
-        fields = ('legal_to_work', 'available_to_work', 'start_work_date',
-                  'currently_employed', 'contact_employer_ok', 'layoff',
-                  'filed_previously', 'filed_previously_date',
+        fields = ('legal_to_work', 'available_to_work', 'states_available_work',
+                  'start_work_date', 'currently_employed', 'contact_employer_ok',
+                  'layoff', 'filed_previously', 'filed_previously_date',
                   'employed_previously', 'employed_previously_date',
                   'convicted_felon', 'convicted_information',)
 

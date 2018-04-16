@@ -11,6 +11,8 @@ from formtools.wizard.views import SessionWizardView
 
 from config import settings
 from jobs.email import send_templated_email
+from jobs.models import WorkState
+
 
 TEMPLATES = {"contact": "jobs/contact.html",
              "employmentstatus": "jobs/employmentstatus.html",
@@ -60,9 +62,11 @@ class ApplicationWizard(SessionWizardView):
         contact.save()
 
         employmentstatus = form_dict['employmentstatus']
-        employmentstatus = employmentstatus.save(commit=False)
-        employmentstatus.contact_id = contact.id
-        employmentstatus.save()
+        employmentstatus.fields['states_available_work'].queryset = WorkState.objects.all()
+        employmentstatus_object = employmentstatus.save(commit=False)
+        employmentstatus_object.contact_id = contact.id
+        employmentstatus_object.save()
+        employmentstatus.save_m2m();
 
         for workexperience in form_dict['workexperience']:
             workexperience = workexperience.save(commit=False)

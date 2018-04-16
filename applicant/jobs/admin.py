@@ -4,10 +4,13 @@ from django.contrib import admin
 from django.contrib.admin import helpers
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.db import models
+from django.forms import CheckboxSelectMultiple
 from django.utils.safestring import mark_safe
 from django.template.response import TemplateResponse
 
-from jobs.models import Contact, EmploymentStatus, WorkExperience, Education, AdditionalInformation, Reference
+from jobs.models import (Contact, WorkState, EmploymentStatus, WorkExperience,
+                         Education, AdditionalInformation, Reference)
 from jobs.email import send_templated_email
 
 # admin.site.register(EmploymentStatus)
@@ -17,11 +20,19 @@ from jobs.email import send_templated_email
 # admin.site.register(Reference)
 
 
+class WorkStateAdmin(admin.ModelAdmin):
+    model = WorkState
+
+
 class EmploymentStatusInline(admin.StackedInline):
     model = EmploymentStatus
     max_num = 1
     extra = 0
 
+    # https://stackoverflow.com/questions/4784567/show-a-manytomanyfield-as-checkboxes-in-django-admin
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
+    }
 
 class WorkExperienceInline(admin.StackedInline):
     model = WorkExperience
@@ -91,4 +102,5 @@ class ContactAdmin(admin.ModelAdmin):
     actions = [email_contacts]
 
 
+admin.site.register(WorkState, WorkStateAdmin)
 admin.site.register(Contact, ContactAdmin)
