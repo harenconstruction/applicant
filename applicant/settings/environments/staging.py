@@ -1,6 +1,3 @@
-import os
-
-
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'staging.harenconstruction.com', '104.236.78.81']
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
