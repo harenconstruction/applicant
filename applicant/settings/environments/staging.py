@@ -1,4 +1,7 @@
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'applicant.duncaningram.com', '104.236.78.81']
+import os
+
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'staging.harenconstruction.com', '104.236.78.81']
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = '/home/applicant/' #os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
