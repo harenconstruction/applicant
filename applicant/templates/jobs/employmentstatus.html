@@ -57,6 +57,16 @@
         </div>
         <div class="row">
           <div class="col-md-7">
+              <label for="{{ form.work_skills.id_for_label }}">What work related skills do you have:</label>
+          </div>
+          <div class="col-md-5">
+            {% for checkbox in form.work_skills %}
+              {{ checkbox }}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
               <label for="{{ form.start_work_date.id_for_label }}">On what date would you be available for work?</label>
           </div>
           <div class="col-md-5">

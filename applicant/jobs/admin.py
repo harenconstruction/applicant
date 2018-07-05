@@ -9,8 +9,14 @@ from django.forms import CheckboxSelectMultiple
 from django.utils.safestring import mark_safe
 from django.template.response import TemplateResponse
 
-from jobs.models import (Contact, WorkState, EmploymentStatus, WorkExperience,
-                         Education, AdditionalInformation, Reference)
+from jobs.models import (Contact,
+                         WorkState,
+                         WorkSkill,
+                         EmploymentStatus,
+                         WorkExperience,
+                         Education,
+                         AdditionalInformation,
+                         Reference)
 from jobs.email import send_templated_email
 
 # admin.site.register(EmploymentStatus)
@@ -22,6 +28,10 @@ from jobs.email import send_templated_email
 
 class WorkStateAdmin(admin.ModelAdmin):
     model = WorkState
+
+
+class WorkSkillAdmin(admin.ModelAdmin):
+    model = WorkSkill
 
 
 class EmploymentStatusInline(admin.StackedInline):
@@ -103,4 +113,5 @@ class ContactAdmin(admin.ModelAdmin):
 
 
 admin.site.register(WorkState, WorkStateAdmin)
+admin.site.register(WorkSkill, WorkSkillAdmin)
 admin.site.register(Contact, ContactAdmin)
