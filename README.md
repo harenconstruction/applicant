@@ -38,3 +38,10 @@ If using the applicant-devops playbook script:
   $ vagrant up --no-provision
 
 Then run the playbook as instructed.
+
+## Updating Staging ##
+
+When you run a migration, for example, make sure you specify the correct
+django environment:
+
+  $ DJANGO_ENV=staging python manage.py migrate
