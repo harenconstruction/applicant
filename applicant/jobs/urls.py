@@ -1,9 +1,12 @@
 from django.conf.urls import url
 from jobs.views import index_form, applicant_thanks
 
-from jobs.forms import (ContactForm, EmploymentStatusForm,
-                        WorkExperienceFormset, EducationFormset,
-                        AdditionalInformationForm, ReferenceFormset,
+from jobs.forms import (ContactForm,
+                        EmploymentStatusForm,
+                        WorkExperienceFormset,
+                        EducationFormset,
+                        AdditionalInformationForm,
+                        ReferenceFormset,
                         CompleteForm)
 from jobs.views import ApplicationWizard
 
