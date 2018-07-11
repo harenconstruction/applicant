@@ -37,6 +37,8 @@ INSTALLED_APPS = [
 
     'formtools',
     'jobs',
+    'pm',
+    'www',
 ]
 
 MIDDLEWARE_CLASSES = [
