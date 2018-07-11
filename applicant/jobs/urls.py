@@ -8,7 +8,7 @@ from jobs.forms import (ContactForm,
                         AdditionalInformationForm,
                         ReferenceFormset,
                         CompleteForm)
-from jobs.views import ApplicationWizard
+from jobs.views import ApplicationWizard, all
 
 FORMS = [("contact", ContactForm),
          ("employmentstatus", EmploymentStatusForm),
@@ -25,6 +25,7 @@ urlpatterns = [
     # application
     url(r'^index.html$', ApplicationWizard.as_view(FORMS), name='application'),
     url(r'^$', ApplicationWizard.as_view(FORMS), name='application'),
-    url(r'^application/$', ApplicationWizard.as_view(FORMS), name='application'),
-    url(r'^application/thanks$', applicant_thanks, name='thanks')
+    url(r'^thanks$', applicant_thanks, name='thanks'),
+    url(r'^(?P<name>.*)', all),
+    url(r'^$', ApplicationWizard.as_view(FORMS), name='application'),
 ]
