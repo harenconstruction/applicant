@@ -29,20 +29,23 @@ class EmploymentStatusForm(forms.ModelForm):
         widgets = {
             'legal_to_work': forms.RadioSelect,
             'available_to_work': forms.RadioSelect,
-            'states_available_work': forms.CheckboxSelectMultiple,
             'currently_employed': forms.RadioSelect,
             'contact_employer_ok': forms.RadioSelect,
             'layoff': forms.RadioSelect,
             'filed_previously': forms.RadioSelect,
             'employed_previously': forms.RadioSelect,
             'convicted_felon': forms.RadioSelect,
-            'start_work_date': forms.DateInput(attrs={'class':'datepicker'})
+            'start_work_date': forms.DateInput(attrs={'class':'datepicker'}),
+            'states_available_work': forms.CheckboxSelectMultiple,
+            'work_skills': forms.CheckboxSelectMultiple
         }
-        fields = ('legal_to_work', 'available_to_work', 'states_available_work',
+        fields = ('legal_to_work', 'available_to_work',
                   'start_work_date', 'currently_employed', 'contact_employer_ok',
                   'layoff', 'filed_previously', 'filed_previously_date',
                   'employed_previously', 'employed_previously_date',
-                  'convicted_felon', 'convicted_information',)
+                  'convicted_felon', 'convicted_information',
+                  'states_available_work', 'work_skills',
+                  )
 
 
 class WorkExperienceForm(forms.ModelForm):

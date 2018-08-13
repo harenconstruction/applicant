@@ -47,6 +47,13 @@ class Contact(models.Model):
         verbose_name_plural = 'Contacts'
 
 
+class WorkSkill(models.Model):
+    skill = models.CharField(unique=True, max_length=255)
+
+    def __str__(self):
+        return "{}".format(self.skill)
+
+
 class WorkState(models.Model):
     state = USPostalCodeField()
 
@@ -67,6 +74,7 @@ class EmploymentStatus(models.Model):
     legal_to_work = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
     available_to_work = models.CharField(max_length=WORK_STATUS_LENGTH, choices=WORK_STATUS, default=None)
     states_available_work = models.ManyToManyField(WorkState, verbose_name='States available for work')
+    work_skills = models.ManyToManyField(WorkSkill, verbose_name='Work related skills')
     start_work_date = models.DateField(verbose_name="Available for work on")
     currently_employed = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
     contact_employer_ok = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
