@@ -5,5 +5,6 @@ from www import views
 
 
 urlpatterns = [
+    url(r'^', views.index),
     url(r'^(?P<name>.*)', views.page),
 ]
