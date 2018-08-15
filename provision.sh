@@ -9,7 +9,7 @@ then
 
     sudo -u postgres createuser --no-superuser --no-createdb --no-createrole applicant || exit 1
     sudo -u postgres psql -c "alter user applicant password 'applicant'"
-    sudo -u postgres createdb applicant -O applicant || exit 1
+    sudo -u postgres createdb -E UTF8 --locale=en_US.utf8 applicant -O applicant || exit 1
 
     # Install the virtualenv in ~vagrant but the project in /vagrant.
     sudo -H -u vagrant -s <<'EOF' || exit 1
