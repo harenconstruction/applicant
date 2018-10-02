@@ -1,0 +1,156 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block pagetitle %}Haren Construction Company, Inc.{% endblock %}</title>
+    <meta name="description" content="Commercial and industrial building, mechanical and electrical contracting, public and private utilities and highway and heavy construction for government and private owners.">
+
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/2b790d7871.js"></script>
+
+    <!-- Stylesheets -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="{% static "css/styles.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!-- Responsive Slider -->
+    <link rel="stylesheet" href="{% static "css/responsiveslides.css" %}">
+    <link rel="stylesheet" href="{% static "css/haren-slider.css" %}">
+    <script src="{% static "responsive-slides/responsiveslides.min.js" %}"></script>
+    <script>
+      // You can also use "$(window).load(function() {"
+      $(function () {
+
+        // Slideshow 1
+        $("#slider1").responsiveSlides({
+          maxwidth: 800,
+          speed: 800
+        });
+
+        // Slideshow 2
+        $("#slider2").responsiveSlides({
+          auto: false,
+          pager: true,
+          speed: 300,
+          maxwidth: 540
+        });
+
+        // Slideshow 3
+        $("#slider3").responsiveSlides({
+          manualControls: '#slider3-pager',
+          maxwidth: 540
+        });
+
+        // Slideshow 4
+        $("#slider4").responsiveSlides({
+          auto: false,
+          pager: false,
+          nav: true,
+          speed: 500,
+          namespace: "callbacks",
+          before: function () {
+            $('.events').append("<li>before event fired.</li>");
+          },
+          after: function () {
+            $('.events').append("<li>after event fired.</li>");
+          }
+        });
+
+      });
+    </script>
+
+  </head>
+  <body>
+
+    {% block navigation %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/index.html"><img src="{% static "img/logo-tiny.png" %}"></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/about-us.html" data-toggle="collapse" data-target="#navbar">Who we are</a></li>
+            <li><a href="/services.html" data-toggle="collapse" data-target="#navbar">What we do</a></li>
+            <li class="dropdown">
+              <!-- PM app -->
+              <!-- Project Categories, Past Projects -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Our Projects <span class="caret"></span></a>
+              <ul class="dropdown-menu scrollable-menu" role="menu">
+                {% for project_category in project_categories %}
+                  <li><a href="/projects/index.html#category_{{ project_category.id }}">{{ project_category.name }}</a></li>
+                {% endfor %}
+                <li role="separator" class="divider"></li>
+                <li><a href="/projects/past">Past Projects</a></li>
+              </ul>
+              <!-- PM app -->
+            </li>
+            <li><a href="careers.html" data-toggle="collapse" data-target="#navbar">Careers</a></li>
+            <li><a href="https://www.facebook.com/harenconstructioncompany/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.linkedin.com/company/haren-construction-co-inc" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="tel:423.263.5561">Questions? Call 1-423-263-5561</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block footer %}
+    <div class="grey">
+      <div class="container" id="contact-us" style="margin-top: 0;">
+        <div class="row">
+          <div class="col-md-2" style="font-size: 90%;">
+            <a href="/index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a><br>
+            <a href="/about-us.html">Who we are</a><br>
+            <a href="/services.html">What we do</a><br>
+            <!-- PM app -->
+            <a href="/projects/">Our Projects</a><br>
+            <!-- PM app -->
+            <a href="/careers.html">Careers</a><br>
+            <br>
+          </div>
+          <div class="col-md-10" style="border-left: 1px solid #f1f1f1; padding-left: 20px;">
+            <p><small><i>Employees are our greatest resource, and Haren Construction is fully committed to their safety.  With our safety program and full-time safety manager, we work hard to provide every employee with safe working conditions.  Working in the water and waste treatment field, we partner closely with our clients to ensure the safety of every jobsite and the public at large.</i></small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container text-center">
+        <h5>250 Years Combined Engineering/Construction Experience</h5>
+        <p>Alabama · Arkansas · Georgia · Kentucky · Louisiana · Mississippi · North Carolina · South Carolina · Tennessee · Texas · Virginia</p>
+        <br>
+        <p><img src="{% static "img/logo.png" %}" width="150"></p>
+        <p><strong>Haren Construction Company, Inc.</strong><br>
+        1715 North Highway 411 | Etowah, Tennessee | Phone: 423-263-5561</p>
+        <p>&copy; Copyright 2018. All rights reserved.<br>
+        <a href="http://www.duncaningram.com" target="_blank">Website by di.</a>
+      </div>
+    </footer>
+
+  </body>
+</html>
+    {% endblock %}
