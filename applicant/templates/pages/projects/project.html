@@ -2,6 +2,10 @@
 {% load app_filters %}
 {% load staticfiles %}
 
+    {% block pagetitle %}
+      {{ project.location }} {{ project.name }} | Haren Construction Company, Inc.
+    {% endblock %}
+
     {% block navigation %}
       {{ block.super }}
     {% endblock %}
