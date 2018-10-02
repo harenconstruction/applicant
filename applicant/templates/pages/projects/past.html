@@ -27,21 +27,19 @@
       <div class="row">
         <div class="col-md-12">
           <div class="row">
-            <div class="col-md-4">
           {% for project in project_category|in_past_category %}
+            <div class="col-md-4">
               <img src="{{ project.photo.first.photo.url }}">
               <h4>{{ project.name }}</h4>
               {{ project.location }}<br>
               <a href="/project/{{ project.id }}">Project details</a>
               <i class="fa fa-camera" aria-hidden="true"></i>
-              {% if forloop.counter|divisibleby:4 %}
             </div>
+              {% if forloop.counter|divisibleby:3 %}
           </div>
           <div class="row">
-            <div class="col-md-4">
               {% endif %}
           {% endfor %}
-            </div>
           </div>
         </div>
       </div>
