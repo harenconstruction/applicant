@@ -1,0 +1,49 @@
+{% extends "pages/base.html" %}
+{% load app_filters %}
+{% load staticfiles %}
+
+    {% block navigation %}
+      {{ block.super }}
+    {% endblock %}
+
+    {% block content %}
+
+    <div class="hero-projects">
+        <div class="container-fluid text-center"></div>
+    </div>
+
+    <div class="container">
+         <h1>Current Projects</h1>
+         <p class="lead">Haren Construction Company strives to create a partnership arrangement with all parties involved in a project to insure quality and satisfaction. This project gallery includes some of our current projects.</p>
+    </div>
+
+    <div class="container" id="current-projects">
+      {% for project_category in project_categories %}
+      <div id="category_{{ project_category.id }}"></div>
+      <br>
+      <hr>
+      <h2>{{ project_category.name }}</h2>
+      <hr>
+      <div class="row">
+        <div class="col-md-12">
+          {% for project in project_category|in_category %}
+          <div class="row">
+            <div class="col-md-4">
+              <img src="{{ project.photo.first.photo.url }}">
+              <h4>{{ project.name }}</h4>
+              {{ project.location }}<br>
+              <a href="/project/{{ project.id }}">Project details</a>
+              <i class="fa fa-camera" aria-hidden="true"></i>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% endblock %}
+
+    {% block footer %}
+      {{ block.super }}
+    {% endblock %}

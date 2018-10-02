@@ -22,6 +22,7 @@ DATABASES = {
         'PASSWORD': 'applicant',
         'HOST': 'localhost',
         'PORT': '',
+        'TEST_CHARSET': 'UTF8',
     }
 }
 

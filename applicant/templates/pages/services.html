@@ -1,0 +1,55 @@
+{% extends "pages/base.html" %}
+{% load staticfiles %}
+
+    {% block navigation %}
+      {{ block.super }}
+    {% endblock %}
+
+    {% block content %}
+    <!-- Begin page content -->
+    <div class="container-fluid">
+      <div class="container">
+        <div class="text-center">
+          <h1>We bring water to life.</h1>
+          <p class="lead">Over the years Haren has established a long standing, partnering type relationship with most consulting engineers and project owners. Our organization is dedicated to constructing quality environmental improvement facilities in a timely, safe and professional manner.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="expertise">
+      <div class="container-fluid">
+        <div class="row" id="expertise">
+          <div class="col-md-4" id="water-wastewater-treatment-plants">
+            <img src="static/img/DSC09263.jpg" width="100%"><br>
+            <h2>Treatment Plants</h2>
+            <p>We are experts in the construction and expansion of clean water and wastewater treatment facilities for both public and private sectors.</p>
+            <p><a href="treatment-plants.html" style="color: #f8f513;">Learn more</a></p>
+          </div>
+          <div class="col-md-4" id="pump-stations">
+            <img src="static/img/DSCN0027.jpg" width="100%"><br>
+            <h2>Pump Stations</h2>
+            <p> HCCI has extensive experience in the construction and retrofitting of pump stations, ranging from potable water boosting pump stations to deep excavation wastewater pump stations.</p>
+            <p><a href="pump-stations.html" style="color: #f8f513;">Learn more</a></p>
+          </div>
+          <div class="col-md-4" id="pipe-lines">
+            <img src="static/img/pipelines.jpg" width="100%"><br>
+            <h2>Pipe Lines</h2>
+            <p>Underground pipeline construction is an important component of Haren Construction Company, Inc. and we have extensive experience in water and wastewater transmission lines in all types of geological conditions.</p>
+            <p><a href="pipe-lines.html" style="color: #f8f513;">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="container text-center">
+        <p class="lead">We have successfully completed many construction projects throughout the south, all with impeccable attention to detail.</p>
+        <p class="lead"><a href="/projects/index.html" class="btn btn-lg btn-danger">View Current Projects</a></p>
+      </div>
+    </div>
+
+    {% endblock %}
+
+    {% block footer %}
+      {{ block.super }}
+    {% endblock %}

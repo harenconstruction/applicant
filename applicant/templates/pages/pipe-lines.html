@@ -1,0 +1,23 @@
+{% extends "pages/base.html" %}
+{% load staticfiles %}
+
+    {% block navigation %}
+      {{ block.super }}
+    {% endblock %}
+
+    {% block content %}
+    <!-- Begin page content -->
+    <div class="container-fluid">
+      <div class="container">
+        <img src="{% static "img/pipelines.jpg" %}" style="width: 100%; margin-top: 20px;">
+        <h1>Underground Pipeline Construction</h1>
+        <p class="lead">Underground pipeline construction is an important component of Haren Construction Company, Inc. and we have extensive experience in water and wastewater transmission lines in all types of geological conditions. Haren has a proven track record of successful projects that reflect company values including quality and safety. Haren's management and field crew work closely with all parties associated with a project in order to provide an appealing and successful final product.</p>
+        <p class="lead">Haren is well-equipped and proficient to perform all types of water and wastewater transmission line construction regardless of geological constraints. Haren has experience installing all types of underground pipeline materials. Our management team also has a significant amount of knowledge in scheduling and the execution of controlled bypassing to prevent unauthorized discharges into the environment.</p>
+      </div>
+    </div>
+
+    {% endblock %}
+
+    {% block footer %}
+      {{ block.super }}
+    {% endblock %}
