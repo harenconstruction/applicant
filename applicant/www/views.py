@@ -22,6 +22,13 @@ def projects(request):
     return render_to_response('pages/projects/index.html', context_dict, context)
 
 
+def past_projects(request):
+    context = RequestContext(request)
+    context_dict = {}
+    context_dict['project_categories'] = ProjectCategory.objects.all()
+    return render_to_response('pages/projects/past.html', context_dict, context)
+
+
 def project(request, id):
     context = RequestContext(request)
     context_dict = {}

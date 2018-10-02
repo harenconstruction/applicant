@@ -8,13 +8,13 @@
 
     {% block content %}
 
-    <div class="hero-projects">
+    <div class="hero-past-projects">
         <div class="container-fluid text-center"></div>
     </div>
 
     <div class="container">
-         <h1>Current Projects</h1>
-         <p class="lead">Haren Construction Company strives to create a partnership arrangement with all parties involved in a project to insure quality and satisfaction. This project gallery includes some of our current projects.</p>
+        <h1>Past Projects</h1>
+        <p class="lead">We have successfully completed many construction projects throughout the southeastern US, all with impeccable attention to detail. This project gallery includes some of the more recent projects we've completed.</p>
     </div>
 
     <div class="container" id="current-projects">
@@ -28,7 +28,7 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-4">
-          {% for project in project_category|in_category %}
+          {% for project in project_category|in_past_category %}
               <img src="{{ project.photo.first.photo.url }}">
               <h4>{{ project.name }}</h4>
               {{ project.location }}<br>
