@@ -33,7 +33,12 @@ def past_projects(request):
 def project(request, id):
     context = RequestContext(request)
     context_dict = {}
-    context_dict['project'] = Project.objects.get(id=id) or None
+
+    try:
+        context_dict['project'] = Project.objects.get(id=id) or None
+    except Project.DoesNotExist:
+        context_dict['project'] = None
+
     context_dict['project_photos'] = Project.objects.get(id=id).photo.all()
     context_dict['project_categories'] = ProjectCategory.objects.all()
     return render_to_response('pages/projects/project.html', context_dict, context)
@@ -44,7 +49,18 @@ def page(request, name):
         context = RequestContext(request)
         context_dict = {}
         context_dict['project_categories'] = ProjectCategory.objects.all()
-        # return render(request, 'pages/' + name)
+        if name == 'treatment-plants.html':
+            try:
+                context_dict['water_project_category'] = ProjectCategory.objects.get(name='Wastewater Treatment Plants')
+            except ProjectCategory.DoesNotExist:
+                context_dict['water_project_category'] = None
+
+        if name == 'pump-stations.html':
+            try:
+                context_dict['pumpstation_project_category'] = ProjectCategory.objects.get(name='Pump Stations')
+            except ProjectCategory.DoesNotExist:
+                context_dict['pumpstation_project_category'] = None
+
         return render_to_response('pages/' + name, context_dict, context)
     except TemplateDoesNotExist:
         raise Http404
