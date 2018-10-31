@@ -34,7 +34,7 @@
                   <h4>{{ project.name }}</h4>
                   {{ project.location }}<br>
                   <a href="/project/{{ project.id }}">Project details</a>
-                  <i class="fa fa-camera" aria-hidden="true"></i>
+                  {% if project.photo.first.photo.url %}<i class="fa fa-camera" aria-hidden="true"></i>{% endif %}
                 </div>
                   {% if forloop.counter|divisibleby:3 %}
               </div>

@@ -1,4 +1,5 @@
 {% extends "pages/base.html" %}
+{% load app_filters %}
 {% load staticfiles %}
 
     {% block navigation %}
@@ -18,109 +19,22 @@
         <hr>
         <div class="container" id="current-projects">
           <div class="row">
+          {% for project in water_project_category|in_category %}
             <div class="col-md-4">
-              <img src="projects/buchanan-ga-wastewater-treatment-plant-improvements/1.jpg">
-              <h4>Division I-WWTP Improvements</h4>
-              Buchanan, GA<br>
-              <a href="projects/buchanan-ga-wastewater-treatment-plant-improvements/index.html">Project details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
+              <img src="{{ project.photo.first.photo.url }}">
+              <h4>{{ project.name }}</h4>
+              {{ project.location }}<br>
+              <a href="/project/{{ project.id }}">Project details</a>
+              {% if project.photo.first.photo.url %}<i class="fa fa-camera" aria-hidden="true"></i>{% endif %}
             </div>
-            <div class="col-md-4">
-              <img src="projects/robbinsville-nc-wwtp-sludge-dewatering-and-lime-stabilization/1.jpg">
-              <h4>WWTP Sludge Dewatering &amp; Lime Stabilization Improvements</h4>
-              Robbinsville, NC<br>
-              <a href="projects/robbinsville-nc-wwtp-sludge-dewatering-and-lime-stabilization/index.html">Project details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
-            </div>
-            <div class="col-md-4">
-              <img src="projects/mt-pleasant-nc-pumping-stations-1-and-2/1.jpg">
-              <h4>Mt. Pleasant Pumping Station No. 1 and No. 2 Improvements</h4>
-              Mt. Pleasant, NC<br>
-              <a href="projects/mt-pleasant-nc-pumping-stations-1-and-2/index.html">Project Details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
-            </div>
+              {% if forloop.counter|divisibleby:3 %}
           </div>
-          <br>
           <div class="row">
-            <div class="col-md-4">
-              <img src="projects/raleigh-nc-neuse-river/3.jpg">
-              <h4>Neuse River RRF Dewatering Facility HVAC and Odor Control Improvements</h4>
-              Raleigh, NC<br>
-              <a href="projects/raleigh-nc-neuse-river/index.html">Project Details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
-            </div>
-            <div class="col-md-4">
-              <img src="projects/morganton-nc-catawba-river-water-pollution-control-facility/1.jpg">
-              <h4>Catawba River Water Pollution Control Facility</h4>
-              Morganton, NC<br>
-              <a href="projects/morganton-nc-catawba-river-water-pollution-control-facility/index.html">Project Details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
-            </div>
-            <div class="col-md-4">
-              <img src="projects/ward-ar-mg-wastewater-treatment-facility-improvements/1.jpg">
-              <h4>Wastewater Treatment Facility Improvements</h4>
-              Ward, AR<br>
-              <a href="projects/ward-ar-mg-wastewater-treatment-facility-improvements/index.html">Project Details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
-              <!-- <img src="projects/chattanooga-tn-moccasin-bend-wastewater-treatment-plant-control-room/1.jpg"> -->
-              <h4>Moccasin Bend Wastewater Treatment Plant Control Room Upgrades</h4>
-              Chattanooga, TN<br>
-              <a href="projects/chattanooga-tn-moccasin-bend-wastewater-treatment-plant-control-room/index.html">Project Details</a>
-            </div>
-            <div class="col-md-4">
-              <!-- <img src="projects/paris-tn-cdbg-wastewater-treatment-improvements/1.jpg"> -->
-              <h4>Paris CDBG Wastewater Treatment Plant Improvements</h4>
-              Paris, TN<br>
-              <a href="projects/paris-tn-cdbg-wastewater-treatment-improvements/index.html">Project Details</a>
-            </div>
-            <div class="col-md-4">
-              <!-- <img src="projects/columbia-county-ga-reed-creek/1.jpg"> -->
-              <h4>Reed Creek Wastewater Treatment Plant Blower and MCC Improvements</h4>
-              Columbia County, GA<br>
-              <a href="projects/columbia-county-ga-reed-creek/index.html">Project Details</a>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
-              <img src="projects/greeneville-tn-raw-water-intake/6.jpg">
-              <h4>Raw Water Intake Modifications</h4>
-              Greeneville, TN<br>
-              <a href="projects/greeneville-tn-raw-water-intake/index.html">Project details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
-            </div>
-            <div class="col-md-4">
-              <!-- <img src="projects/dalton-ga-reservoir-pump-station-rehabilitation/1.jpg"> -->
-              <h4>Reservoir Pump Station Rehabilitation Project</h4>
-              Dalton, GA<br>
-              <a href="projects/dalton-ga-reservoir-pump-station-rehabilitation/index.html">Project details</a>
-            </div>
-            <div class="col-md-4">
-              <!-- <img src="projects/south-pittsburg-tn-water-system-improvements-raw-water-intake-stabilization/1.jpg"> -->
-              <h4>Water System Improvements Raw Water Intake Stabilization</h4>
-              South Pittsburg, TN<br>
-              <a href="projects/south-pittsburg-tn-water-system-improvements-raw-water-intake-stabilization/index.html">Project Details</a>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
-              <!-- <img src="projects/cleveland-tn-filter-plant-flocculation-and-sedimentation-improvements/1.jpg"> -->
-              <h4>Cleveland Filter Plant Flocculation and Sedimentation Basin Improvements</h4>
-              Cleveland, TN<br>
-              <a href="projects/cleveland-tn-filter-plant-flocculation-and-sedimentation-improvements/index.html">Project Details</a>
-            </div>
-            <div class="col-md-8"></div>
-          </div>
+              {% endif %}
+          {% endfor %}
         </div>
       </div>
     </div>
-
 
     {% endblock %}
 

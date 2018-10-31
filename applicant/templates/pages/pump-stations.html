@@ -18,83 +18,19 @@
         <hr>
         <div class="container" id="current-projects">
           <div class="row">
+          {% for project in pumpstation_project_category|in_category %}
             <div class="col-md-4">
-              <img src="projects/lexington-nc-hyattown-pumping-station/1.jpg">
-              <h4>Hyattown Pumping Station</h4>
-              Lexington, NC<br>
-              <a href="projects/lexington-nc-hyattown-pumping-station/index.html">Project details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
+              <img src="{{ project.photo.first.photo.url }}">
+              <h4>{{ project.name }}</h4>
+              {{ project.location }}<br>
+              <a href="/project/{{ project.id }}">Project details</a>
+              {% if project.photo.first.photo.url %}<i class="fa fa-camera" aria-hidden="true"></i>{% endif %}
             </div>
-            <div class="col-md-4">
-              <img src="projects/raleigh-nc-crabtree-creek-lift-station-expansion/1.jpg">
-              <h4>Crabtree Creek Lift Station Expansion</h4>
-              Raleigh, NC<br>
-              <a href="projects/raleigh-nc-crabtree-creek-lift-station-expansion/index.html">Project details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
-            </div>
-            <div class="col-md-4">
-              <img src="projects/springdale-ar-spring-creek-lift-station/1.jpg">
-              <h4>Spring Creek Lift Station</h4>
-              Springdale, AR<br>
-              <a href="projects/springdale-ar-spring-creek-lift-station/index.html">Project details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
-            </div>
+              {% if forloop.counter|divisibleby:3 %}
           </div>
-          <br>
           <div class="row">
-            <div class="col-md-4">
-              <img src="projects/greensboro-nc-stewart-mill-road-and-creek-lift-stations-improvements/1.jpg">
-              <h4>Stewart Mill Road and Rock Creek Lift Stations Improvements</h4>
-              Greensboro, NC<br>
-              <a href="projects/greensboro-nc-stewart-mill-road-and-creek-lift-stations-improvements/index.html">Project details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
-            </div>
-            <div class="col-md-4">
-              <img src="projects/winder-ga-fort-yargo-raw-water-project/2a.jpg">
-              <h4>Fort Yargo Raw Water Project-Contract A</h4>
-              Winder, GA<br>
-              <a href="projects/winder-ga-fort-yargo-raw-water-project/index.html">Project details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
-            </div>
-            <div class="col-md-4">
-              <img src="projects/raleigh-nc-big-branch-south-pump-station-expansion/1.jpg">
-              <h4>Big Branch South PS Expansion</h4>
-              Raleigh, NC<br>
-              <a href="projects/raleigh-nc-big-branch-south-pump-station-expansion/index.html">Project details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
-              <img src="projects/lenoir-city-tn-main-pump-station-replacement/1.jpg">
-              <h4>Lenoir City Main Pump Station #1 Replacement</h4>
-              Lenoir City, TN<br>
-              <a href="projects/lenoir-city-tn-main-pump-station-replacement/index.html">Project details</a>
-              <i class="fa fa-camera" aria-hidden="true"></i>
-            </div>
-            <div class="col-md-4">
-              <!-- <img src="projects/raleigh-nc-pump-station-rehabilitation/1.jpg"> -->
-              <h4>Pump Station Rehabilitation Project</h4>
-              Raleigh, NC<br>
-              <a href="projects/raleigh-nc-pump-station-rehabilitation/index.html">Project details</a>
-            </div>
-            <div class="col-md-4">
-              <!-- <img src="projects/knoxville-tn-kuwahee-wastewater-treatment-ras-pumping-system/1.jpg"> -->
-              <h4>Kuwahee Wastewater Treatment Plant RAS Pumping System Upgrade</h4>
-              Knoxville, TN<br>
-              <a href="projects/knoxville-tn-kuwahee-wastewater-treatment-ras-pumping-system/index.html">Project details</a>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
-              <!-- <img src="projects/york-sc-steele-creek-wastewater-pump-station/1.jpg"> -->
-              <h4>Steele Creek Wastewater Pump Station</h4>
-              York, SC<br>
-              <a href="projects/york-sc-steele-creek-wastewater-pump-station/index.html">Project details</a>
-            </div>
-            <div class="col-md-8"></div>
+              {% endif %}
+          {% endfor %}
           </div>
         </div>
       </div>
