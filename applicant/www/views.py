@@ -12,6 +12,7 @@ def index(request):
     context = RequestContext(request)
     context_dict = {}
     context_dict['project_categories'] = ProjectCategory.objects.all()
+    context_dict['slideshow_photos'] = Slideshow.objects.all()
     return render_to_response('pages/index.html', context_dict, context)
 
 

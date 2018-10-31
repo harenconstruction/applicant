@@ -80,21 +80,19 @@
           <div class="container-fluid text-center" id="gallery">
             <div class="row">
               <div class="col-md-12">
-                <!-- PM app -->
                 <center>
                 <!-- Project Slideshow -->
                 <div class="callbacks_container">
                   <ul class="rslides" id="slider4">
-                    <!-- example of a slideshow
+                    {% for slideshow_photo in slideshow_photos %}
                     <li>
-                      <img src="pastprojects/albertville-al-water-treatment-plant/2.jpg" alt="">
-                      <p class="caption">Albertville, AL:  Albertville Water Treatment Plant</p>
+                      <img src="{{ slideshow_photo.project_photo.photo.url }}" alt="">
+                      <p class="caption">{{ slideshow_photo.project_photo.project.location }} :  {{ slideshow_photo.project_photo.project.description }}</p>
                     </li>
-                  -->
+                    {% endfor %}
                   </ul>
                 </div>
                 </center>
-                <!-- end PM -->
               </div>
             </div>
           </div>
