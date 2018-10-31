@@ -88,7 +88,7 @@
                       {% for slideshow_photo in slideshow_set.project_photo.all %}
                         <li>
                           <img src="{{ slideshow_photo.photo.url }}" alt="">
-                          <p class="caption">{{ slideshow_photo.project.location }} :  {{ slideshow_photo.project.description }}</p>
+                          <p class="caption">{{ slideshow_photo.project.location }} :  {{ slideshow_photo.project.name }}</p>
                         </li>
                       {% endfor %}
                     {% endfor %}
