@@ -1,0 +1,43 @@
+{% extends "pages/base.html" %}
+{% load staticfiles %}
+
+    {% block navigation %}
+      {{ block.super }}
+    {% endblock %}
+
+    {% block content %}
+    <!-- Begin page content -->
+    <div class="hero-careers">
+      <div class="container-fluid text-center"></div>
+    </div>
+    <div class="container-fluid">
+      <div class="container">
+        <h1>We take pride in our work.</h1>
+        <p class="lead">We encourage qualified, aggressive individuals to join our team and be a part of an organization that has had many years of environmental construction success and has an excellent reputation in the construction business. Our reputation has been built on our having the knowledge, experience and technology needed to get the job done right, from start to finish.</p>
+        <h2>Safety Matters</h2>
+        <p class="lead">Employees are our greatest resource, and Haren Construction is fully committed to their safety.  With our safety program and full-time safety manager, we work hard to provide every employee with safe working conditions.</p>
+        <h2>Now Hiring!</h2>
+        <p class="lead">We service municipalities across the Southeastern US and are currently looking to fill various positions including:</p>
+        <ul>
+          <li><a href="/superintendent-jobs.html" style="color: red;">Superintendents</a></li>
+          <li><a href="http://jobs.harenconstruction.com/application/" style="color: red;">Foremen</a></li>
+          <li><a href="http://jobs.harenconstruction.com/application/" style="color: red;">Carpenters</a></li>
+          <li><a href="http://jobs.harenconstruction.com/application/" style="color: red;">Laborers</a></li>
+        </ul>
+        <p><a href="http://jobs.harenconstruction.com/application/" class="btn btn-lg btn-danger" role="button">APPLY ONLINE</a></p>
+        <br>
+        <p><a href="/static/application.pdf" style="color: red;">Download Job Application</a><br>
+        Complete and fax applications to 423-263-5573.</p>
+        <hr>
+        <small>
+          <p>Haren Construction Company, Inc. provides equal employment opportunities (EEO) to all employees and applicants for employment without regard to race, color, religion, sex, national origin, age, disability or genetics. In addition to federal law requirements, Haren Construction Company, Inc. complies with applicable state and local laws governing nondiscrimination in employment in every location in which the company has facilities. This policy applies to all terms and conditions of employment, including recruiting, hiring, placement, promotion, termination, layoff, recall, transfer, leaves of absence, compensation and training.</p>
+        </small>
+        <br>
+      </div>
+    </div>
+
+    {% endblock %}
+
+    {% block footer %}
+      {{ block.super }}
+    {% endblock %}

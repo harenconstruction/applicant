@@ -6,20 +6,33 @@ html {
 
 body {
   padding-top: 50px;
-  font: 16px/1.4 'Open Sans', sans-serif;
+  font: 18px/1.4 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
-  /*  background-image: url(../img/paper.png);  */
+  /*  background-image: url(/static/img/paper.png);  */
 }
 
 .container-fluid {
   max-width: 1900px;
 }
 
+hr {
+  border-top: 1px solid #ddd;
+}
+
+a {
+  color: #337AB9;
+}
+
 p {
   font-weight: 300;
 }
+h4 {font-size: 21px;}
 ul {
   list-style-type: none;
+}
+ul.jobreqs {
+  list-style-type: circle;
+  padding-left: 35px;
 }
 
 .navbar {
@@ -38,7 +51,7 @@ ul {
 .hero {
   margin: 0;
   padding: 0;
-  background: url({% static "img/water.jpg" %}) no-repeat center center;
+  background: url(/static/img/water.jpg) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -53,26 +66,119 @@ ul {
   padding-top: 30%;
 }
 
+.hero-moccasin-bend {
+  margin: 0;
+  padding: 0;
+  background: url(/static/img/chattanooga-tn-moccasin-bend-wwtp.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 600px;
+}
+.hero-moccasin-bend div.feature {
+  width: 65%;
+  margin: 25% 0 5% 0;
+  padding: 2%;
+  float: right;
+  background-color: rgba(0, 0, 0, .5);
+  color: #fff;
+}
+.hero-moccasin-bend div.feature-m {
+  width: 95%;
+  margin: 5% auto;
+  padding: 2%;
+  background-color: rgba(0, 0, 0, .5);
+  color: #fff;
+}
+.hero-moccasin-bend h1 {
+  font-size: 44px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.hero-careers {
+  margin: 0;
+  padding: 0;
+  background: url(/static/img/careers.jpg) no-repeat center bottom;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 400px;
+}
+
+.hero-projects {
+  margin: 0;
+  padding: 0;
+  background: url(/static/img/projects.jpg) no-repeat center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 200px;
+}
+
+.hero-past-projects {
+  margin: 0;
+  padding: 0;
+  background: url(/static/img/past-projects.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 200px;
+}
+
 .expertise {
-  background-image: url({% static "img/concrete_wall.png" %});
+  background-image: url(/static/img/concrete_wall.png);
   color: #fff;
 }
 .expertise .col-md-4 {
   padding: 35px;
 }
+.hiring {
+  padding: 120px auto;
+  background-color: #f8f513;
+  /*border-bottom: 10px solid #101010;*/
+}
 
-#about, #water-wastewater-treatment-plants, #pump-stations, #pipe-lines, #current-projects, #contact-us {
+#about, #water-wastewater-treatment-plants, #pump-stations, #pipe-lines, #contact-us {
   padding-top: 50px;
   padding-bottom: 50px;
 }
 
 #gallery {
-  padding-top: 50px;
-  max-width: 1200px;
+  padding-top: 15px;
 }
 
-.about, .gallery {
+.about {
+  background-image: url(/static/img/cloth.png);
+  /* ORANGE */
+  /*
   background-color: #e19811;
+  */
+}
+.news, .subnav {
+  background-image: url(/static/img/brushed-copy.png);
+  /* ORANGE */
+  /*
+  background-color: #e19811;
+  */
+}
+
+.subnav {
+  padding: 25px;
+}
+
+.subnav li {
+  margin: 12px 0px;
+  line-height: 115%;
+}
+
+#current-projects {
+  margin-bottom: -20px;
 }
 
 #current-projects .col-md-4, #current-projects .col-md-6, #current-projects .col-md-12 {
@@ -96,13 +202,19 @@ ul {
 #current-projects .project-list li {
   margin-bottom: 9px;
 }
+#current-projects img {
+  width: 100%;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+}
 
 
 .grey {
-  /*  background-image: url(../img/brushed-copy.png);  */
-  background-image: url(../img/concrete_wall.png);
+  background-image: url(/static/img/concrete_wall.png);
   color: #fff;
-  margin-top: 35px;
+}
+.grey a {
+  color: #fff;
 }
 .grey a:hover {
   color: #fff;

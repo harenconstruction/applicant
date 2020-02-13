@@ -1,0 +1,24 @@
+{% extends "pages/base.html" %}
+{% load staticfiles %}
+
+    {% block navigation %}
+      {{ block.super }}
+    {% endblock %}
+
+    {% block content %}
+    <!-- Begin page content -->
+    <div class="container-fluid">
+      <div class="container text-center">
+        <img src="/static/img/feature.jpg" width="100%">
+        <h2>The highest standards in construction.</h2>
+        <p class="lead">Haren Construction Company, Inc. has been a family owned and operated contracting company for three generations. Our reputation has been built on our having the knowledge, experience and technology needed to get the job done right, from start to finish, on time and within budget.</p>
+        <img src="/static/img/haren-construction.png" width="100%"><br><br>
+        <p class="lead">Working with government and private owners, Haren Construction Company provides commercial and industrial building, mechanical and electrical contracting, public and private utilities, and highway and heavy construction.</p>
+      </div>
+    </div>
+
+    {% endblock %}
+
+    {% block footer %}
+      {{ block.super }}
+    {% endblock %}

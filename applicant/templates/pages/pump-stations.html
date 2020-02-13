@@ -1,0 +1,44 @@
+{% extends "pages/base.html" %}
+{% load app_filters %}
+{% load staticfiles %}
+
+    {% block navigation %}
+      {{ block.super }}
+    {% endblock %}
+
+    {% block content %}
+    <!-- Begin page content -->
+    <div class="container-fluid">
+      <div class="container">
+        <img src="{% static "img/DSCN0027.jpg" %}" style="width: 100%; margin-top: 20px;">
+        <h1>Pump Station Construction And Renovation</h1>
+        <p class="lead">Water and wastewater pump station construction represents a significant portion of HCCI's work. Our management team has many years experience and is cognizant of all aspects of dewatering, safety, shoring, excavation, as well as influent/effluent diversions required for completion of successful pump station construction and renovation projects.</p>
+        <p class="lead">HCCI is well-equipped and staffed to self perform most all critical phases of pump station construction and retrofitting. The management team of HCCI understands the sequencing required for a professionally completed pump station project that is constructed safely, on time and on budget.</p>
+        <hr>
+        <h2>Current Pump Station Projects</h2>
+        <hr>
+        <div class="container" id="current-projects">
+          <div class="row">
+          {% for project in pumpstation_project_category|in_category %}
+            <div class="col-md-4">
+              <img src="{{ project.photo.first.photo.url }}">
+              <h4>{{ project.name }}</h4>
+              {{ project.location }}<br>
+              <a href="/project/{{ project.id }}">Project details</a>
+              {% if project.photo.first.photo.url %}<i class="fa fa-camera" aria-hidden="true"></i>{% endif %}
+            </div>
+              {% if forloop.counter|divisibleby:3 %}
+          </div>
+          <div class="row">
+              {% endif %}
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}
+
+    {% block footer %}
+      {{ block.super }}
+    {% endblock %}

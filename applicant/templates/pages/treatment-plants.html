@@ -1,0 +1,44 @@
+{% extends "pages/base.html" %}
+{% load app_filters %}
+{% load staticfiles %}
+
+    {% block navigation %}
+      {{ block.super }}
+    {% endblock %}
+
+    {% block content %}
+    <!-- Begin page content -->
+    <div class="container-fluid">
+      <div class="container">
+        <img src="static/img/DSC09263.jpg" style="width: 100%; margin-top: 20px;">
+        <h1>Water and Wastewater Treatment Plant Construction And Renovation</h1>
+        <p class="lead">We are experts in the construction and expansion of clean water and wastewater treatment facilities for both public and private sectors. In the treatment plant construction arena, Haren successfully constructed numerous environmental improvement projects throughout the southeast. Haren is an engineer oriented environmental construction company that has significant experience in all phases of treatment plant construction and renovation including; estimating, value engineering, procurement, scheduling, coordination and startup.</p>
+        <p class="lead">Haren's management team understands the intrinsic details required for successful water and wastewater treatment plant construction and has a proven track record, which reflects this expertise.</p>
+        <hr>
+        <h2>Current Treatment Plant Projects</h2>
+        <hr>
+        <div class="container" id="current-projects">
+          <div class="row">
+          {% for project in water_project_category|in_category %}
+            <div class="col-md-4">
+              <img src="{{ project.photo.first.photo.url }}">
+              <h4>{{ project.name }}</h4>
+              {{ project.location }}<br>
+              <a href="/project/{{ project.id }}">Project details</a>
+              {% if project.photo.first.photo.url %}<i class="fa fa-camera" aria-hidden="true"></i>{% endif %}
+            </div>
+              {% if forloop.counter|divisibleby:3 %}
+          </div>
+          <div class="row">
+              {% endif %}
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}
+
+    {% block footer %}
+      {{ block.super }}
+    {% endblock %}

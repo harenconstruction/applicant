@@ -72,7 +72,7 @@ class ProjectPhoto(models.Model):
 
 class Slideshow(models.Model):
 
-    project_photo =models.ManyToManyField(ProjectPhoto, related_name='project_photo')
+    project_photo = models.ManyToManyField(ProjectPhoto, related_name='project_photo')
 
     class Meta:
         verbose_name = 'Slideshow photo'
