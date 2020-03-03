@@ -2,13 +2,12 @@
 <p>{{ message }}</p>
 <br><br>
 {% endif %}
-
-<strong>The following job application was submitted on:</strong> {{ contact.created_at }} <br><br>
-
 {% if project %}
 <p>The job application was submitted from the '{{ project }}' project page.</p>
+<br><br>
 {% endif %}
 
+<strong>The following job application was submitted on:</strong> {{ contact.created_at }} <br><br>
 
 <strong>I. Contact Information</strong><br><br>
 <strong>Full name: </strong>{{ contact.first_name }} {{ contact.middle_name }} {{ contact.last_name }}<br>

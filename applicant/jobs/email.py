@@ -42,7 +42,8 @@ def send_templated_email(subject, email_template_name, email_context, recipients
     from django.template import loader, Context
     from django.utils.html import strip_tags
 
-    c = Context(email_context)
+    # c = Context(email_context)
+    c = email_context
     if not sender:
         sender = settings.DEFAULT_FROM_EMAIL
 

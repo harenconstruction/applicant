@@ -52,7 +52,9 @@ class ApplicationWizard(SessionWizardView):
     file_storage = FileSystemStorage(location=os.path.join(settings.TEMP_PATH, 'file_uploads'))
 
     def dispatch(self, request, *args, **kwargs):
-        self.project_id = kwargs.get('project_id', None)
+        project_id = request.GET.get('project_id', None)
+        if project_id:
+            self.request.session["project_id"] = project_id
         return super(ApplicationWizard, self).dispatch(request, *args, **kwargs)
 
     def get_template_names(self):
@@ -94,8 +96,9 @@ class ApplicationWizard(SessionWizardView):
             reference.save()
 
         # was a project id referenced at the start?
-        if self.project_id is not None:
-            p = Project.objects.get(id=self.project_id)
+        project_id = self.request.session.get("project_id", None)
+        if project_id is not None:
+            p = Project.objects.get(id=project_id)
             project_name = p.name
         else:
             project_name = None
@@ -107,7 +110,7 @@ class ApplicationWizard(SessionWizardView):
             send_templated_email('Job application contact', 'email/applicant_email.html', {"project": project_name, "contact": contact, "message": "A new job application has been created."}, "application@harenconstruction.com",
                                     sender=None, bcc=None, fail_silently=True, files=resume)
         else:
-            send_templated_email('Job application contact', 'email/applicant_email.html', {"contact": contact, "message": "A new job application has been created."}, "application@harenconstruction.com",
+            send_templated_email('Job application contact', 'email/applicant_email.html', {"project": project_name, "contact": contact, "message": "A new job application has been created."}, "application@harenconstruction.com",
                                     sender=None, bcc=None, fail_silently=True)
 
 
