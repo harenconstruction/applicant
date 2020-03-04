@@ -108,10 +108,10 @@ class ApplicationWizard(SessionWizardView):
         if additionalinformation.resume:
             resume = '/home/applicant' + additionalinformation.resume.url
             send_templated_email('Job application contact', 'email/applicant_email.html', {"project": project_name, "contact": contact, "message": "A new job application has been created."}, "application@harenconstruction.com",
-                                    sender=None, bcc="andy@duncaningram.com", fail_silently=True, files=resume) # None
+                                    sender=None, bcc=("andy@duncaningram.com"), fail_silently=True, files=resume) # None
         else:
             send_templated_email('Job application contact', 'email/applicant_email.html', {"project": project_name, "contact": contact, "message": "A new job application has been created."}, "application@harenconstruction.com",
-                                    sender=None, bcc="andy@duncaningram.com", fail_silently=True) # None
+                                    sender=None, bcc=("andy@duncaningram.com"), fail_silently=True) # None
 
 
         return HttpResponseRedirect('thanks', {'form_data': form_data})
