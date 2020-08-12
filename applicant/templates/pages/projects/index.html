@@ -29,7 +29,7 @@
           <div class="row">
           {% for project in project_category|in_category %}
             <div class="col-md-4">
-              <img src="{{ project.photo.first.photo.url }}">
+              {% if project.photo.first.photo.url %}<img src="{{ project.photo.first.photo.url }}">{% endif %}
               <h4>{{ project.name }}</h4>
               {{ project.location }}<br>
               <a href="/project/{{ project.id }}">Project details</a>

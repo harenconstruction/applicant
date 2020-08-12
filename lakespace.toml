@@ -1,0 +1,12 @@
+[applicant]
+browser = 'firefox'
+tabs = [
+	"https://github.com/harenconstruction/applicant/issues/",
+	"http://localhost:8095/index.html",
+	"http://localhost:8095/admin/"
+]
+
+[ide]
+editor = 'atom'
+path = ''
+

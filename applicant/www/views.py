@@ -12,7 +12,11 @@ def index(request):
     context = RequestContext(request)
     context_dict = {}
     context_dict['project_categories'] = ProjectCategory.objects.all()
-    context_dict['slideshow_photos'] = Slideshow.objects.all()
+    try:
+        context_dict['slideshow_photos'] = Slideshow.objects.all()
+    except Slideshow.DoesNotExist:
+        context_dict['slideshow_photos'] = None
+
     return render_to_response('pages/index.html', context_dict, context)
 
 
@@ -60,6 +64,12 @@ def page(request, name):
                 context_dict['pumpstation_project_category'] = ProjectCategory.objects.get(name='Pump Stations')
             except ProjectCategory.DoesNotExist:
                 context_dict['pumpstation_project_category'] = None
+
+        if name == 'index.html':
+            try:
+                context_dict['slideshow_photos'] = Slideshow.objects.all()
+            except Slideshow.DoesNotExist:
+                context_dict['slideshow_photos'] = None
 
         return render_to_response('pages/' + name, context_dict, context)
     except TemplateDoesNotExist:
