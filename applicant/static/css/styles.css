@@ -143,6 +143,13 @@ ul.jobreqs {
   background-color: #f8f513;
   /*border-bottom: 10px solid #101010;*/
 }
+.covid {
+  padding: 120px auto;
+  background-color: #c9302c;
+  color: #fff;
+  padding: 10px;
+  /*border-bottom: 10px solid #101010;*/
+}
 
 #about, #water-wastewater-treatment-plants, #pump-stations, #pipe-lines, #contact-us {
   padding-top: 50px;
