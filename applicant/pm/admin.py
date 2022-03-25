@@ -14,7 +14,9 @@ class ProjectAdmin(admin.ModelAdmin):
 
     inlines = [ProjectPhotoInline,]
 
-    fields = ['name', 'description', 'engineer', 'owner', 'location', 'cost', 'status', 'categories',]
+    fields = ['name', 'description', 'engineer', 'owner', 'location', 'state', 'city', 'cost', 'cost_description', 'project_timeframe', 'status', 'categories',]
+
+    list_filter = ('categories', 'status')
 
 
 class ProjectPhotoAdmin(admin.ModelAdmin):
