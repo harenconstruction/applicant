@@ -32,7 +32,7 @@
             {% endif %}
             <h4>
               {% if project.cost_description %}
-              {{ project.cost_description }}
+              {{ project.cost_description }} | {{ project.location }}
               {% else %}
                 {% if project.cost > 0 %}${{ project.cost|intcomma }} | {% endif %}{{ project.location }}
               {% endif %}
