@@ -29,11 +29,13 @@
           <div class="row">
           {% for project in project_category|in_category %}
             <div class="col-md-4">
-              {% if project.photo.first.photo.url %}<img src="{{ project.photo.first.photo.url }}">{% endif %}
+              {% if project.photo.first.photo %}
+                {% if project.photo.first.photo.url %}<img src="{{ project.photo.first.photo.url }}">{% endif %}
+              {% endif %}
               <h4>{{ project.name }}</h4>
               {{ project.location }}<br>
               <a href="/project/{{ project.id }}">Project details</a>
-              {% if project.photo.first.photo.url %}<i class="fa fa-camera" aria-hidden="true"></i>{% endif %}
+              {% if project.photo.first.photo %}{% if project.photo.first.photo.url %}<i class="fa fa-camera" aria-hidden="true"></i>{% endif %}{% endif %}
             </div>
               {% if forloop.counter|divisibleby:3 %}
           </div>
