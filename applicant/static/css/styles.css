@@ -9,6 +9,7 @@ body {
   font: 18px/1.4 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   /*  background-image: url(/static/img/paper.png);  */
+  background-color: #F2F3F3;
 }
 
 .container-fluid {
@@ -23,6 +24,11 @@ a {
   color: #337AB9;
 }
 
+.blue a:hover {
+  color:  #fff;
+  text-decoration: none;
+}
+
 p {
   font-weight: 300;
 }
@@ -35,10 +41,33 @@ ul.jobreqs {
   padding-left: 35px;
 }
 
+.btn-warning {
+  background-color: #FFF533;
+  border-color:  #000;
+  color: #000;
+}
+.btn-warning:hover {
+  background-color: red;
+  color: #000;
+}
+
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
 }
+
+.navbar-inverse {
+  background-color: #024f94;
+}
+
+
+.navbar-nav li {
+  margin: 8px;
+}
+.navbar-inverse .navbar-nav>li>a {
+  color:  #fff;
+}
+
 .scrollable-menu {
     height: auto;
     max-height: 500px;
@@ -66,17 +95,17 @@ ul.jobreqs {
   padding-top: 30%;
 }
 
-.hero-moccasin-bend {
+.hero-feature {
   margin: 0;
   padding: 0;
-  background: url(/static/img/chattanooga-tn-moccasin-bend-wwtp.jpg) no-repeat center center;
+  background: url(/static/img/feature.png) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   min-height: 600px;
 }
-.hero-moccasin-bend div.feature {
+.hero-feature div.feature {
   width: 65%;
   margin: 25% 0 5% 0;
   padding: 2%;
@@ -84,14 +113,46 @@ ul.jobreqs {
   background-color: rgba(0, 0, 0, .5);
   color: #fff;
 }
-.hero-moccasin-bend div.feature-m {
+.hero-feature div.feature-m {
   width: 95%;
   margin: 5% auto;
   padding: 2%;
   background-color: rgba(0, 0, 0, .5);
   color: #fff;
 }
-.hero-moccasin-bend h1 {
+.hero-feature h1 {
+  font-size: 44px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.hero-about {
+  margin: 50px 0px;
+  padding: 0;
+  background: url(/static/img/walter-hill-dam.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 400px;
+}
+.hero-about div.feature {
+  width: 65%;
+  margin: 12% 0 5% 0;
+  padding: 2%;
+  float: right;
+  background-color: rgba(2, 79, 148, .8);
+  color: #fff;
+}
+.hero-about div.feature-m {
+  width: 95%;
+  margin: 5% auto;
+  padding: 2%;
+  background-color: rgba(2, 79, 148, .8);
+  color: #fff;
+}
+.hero-about h1 {
   font-size: 44px;
   font-weight: 600;
   color: #fff;
@@ -101,7 +162,7 @@ ul.jobreqs {
 .hero-careers {
   margin: 0;
   padding: 0;
-  background: url(/static/img/careers.jpg) no-repeat center bottom;
+  background: url(/static/img/construction.jpg) no-repeat top center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -112,42 +173,49 @@ ul.jobreqs {
 .hero-projects {
   margin: 0;
   padding: 0;
-  background: url(/static/img/projects.jpg) no-repeat center top;
+  background: url(/static/img/projects.png) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  min-height: 200px;
+  min-height: 400px;
 }
 
 .hero-past-projects {
   margin: 0;
   padding: 0;
-  background: url(/static/img/past-projects.jpg) no-repeat center center;
+  background: url(/static/img/past-projects.png) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  min-height: 200px;
+  min-height: 400px;
 }
 
-.expertise {
-  background-image: url(/static/img/concrete_wall.png);
-  color: #fff;
+.blue div.col-md-2 {
+  opacity:  0.7;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-shadow: 1px 1px 1px #000;
 }
-.expertise .col-md-4 {
-  padding: 35px;
+.blue div.col-md-2 h2 {
+  font-weight: 600;
 }
+
+.blue div.col-md-2:hover {
+  opacity:  1.0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-shadow: 3px 3px 3px #000;
+}
+
 .hiring {
   padding: 120px auto;
   background-color: #f8f513;
-  /*border-bottom: 10px solid #101010;*/
-}
-.covid {
-  padding: 120px auto;
-  background-color: #c9302c;
-  color: #fff;
-  padding: 10px;
   /*border-bottom: 10px solid #101010;*/
 }
 
@@ -162,13 +230,6 @@ ul.jobreqs {
 
 .about {
   background-image: url(/static/img/cloth.png);
-  /* ORANGE */
-  /*
-  background-color: #e19811;
-  */
-}
-.news, .subnav {
-  background-image: url(/static/img/brushed-copy.png);
   /* ORANGE */
   /*
   background-color: #e19811;
@@ -192,7 +253,7 @@ ul.jobreqs {
   padding: 20px;
 }
 #current-projects h3, #current-projects a, #current-projects i {
-  color: #337AB9;
+  color: #000;
 }
 #current-projects a {
   margin-right: 5px;
@@ -215,9 +276,17 @@ ul.jobreqs {
   margin-bottom: 10px;
 }
 
+.blue {
+  background-color: #94c7ed;
+}
 
 .grey {
-  background-image: url(/static/img/concrete_wall.png);
+  background: url(/static/img/water.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 400px;
   color: #fff;
 }
 .grey a {
@@ -249,11 +318,11 @@ ul.jobreqs {
 
 .footer {
   padding: 30px 15px;
-  background-color: #101010;
+  background-color: #024f94;
   color: #ccc;
 }
 .footer p {
-  font-size: 12px;
+  font-size: 16px;
 }
 
 /*  Resonsive slider  */
