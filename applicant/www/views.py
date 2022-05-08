@@ -44,7 +44,7 @@ def project(request, id):
         context_dict['project'] = None
 
     context_dict['project_photos'] = Project.objects.get(id=id).photo.all()
-    context_dict['project_categories'] = ProjectCategory.objects.all()
+    context_dict['project_categories'] = ProjectCategory.objects.all().order_by('order')
     return render_to_response('pages/projects/project.html', context_dict, context)
 
 
