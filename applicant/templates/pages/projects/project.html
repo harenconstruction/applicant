@@ -46,17 +46,35 @@
         </div>
 
         <div class="col-md-3 subnav">
-          <h3 style="color: #000;">Current Projects</h3>
-          {% for project_category in project_categories %}
-            <button class="accordion">{{ project_category.name }}</button>
-            <div class="panel" id="category_{{ project_category.id }}">
-              <ul>
-                {% for aproject in project_category|in_category %}
-                  <li><a href="{{ aproject.id }}">{{ aproject.name}}</a><br><small>{{ aproject.location }}</small></li>
-                {% endfor %}
-              </ul>
-            </div>
-          {% endfor %}
+          {% if project.status == 'current' %}
+            <h3 style="color: #000;">Current Projects</h3>
+            {% for project_category in project_categories %}
+              {% if project_category|in_category|length > 0 %}
+                <button class="accordion">{{ project_category.name }}</button>
+                <div class="panel" id="category_{{ project_category.id }}">
+                  <ul>
+                    {% for aproject in project_category|in_category %}
+                      <li><a href="{{ aproject.id }}">{{ aproject.name}}</a><br><small>{{ aproject.location }}</small></li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <h3 style="color: #000;">Past Projects</h3>
+            {% for project_category in project_categories %}
+              {% if project_category|in_past_category|length > 0 %}
+                <button class="accordion">{{ project_category.name }}</button>
+                <div class="panel" id="category_{{ project_category.id }}">
+                  <ul>
+                    {% for aproject in project_category|in_past_category %}
+                      <li><a href="{{ aproject.id }}">{{ aproject.name}}</a><br><small>{{ aproject.location }}</small></li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         </div>
       </div>
     </div>
