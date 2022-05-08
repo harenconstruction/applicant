@@ -23,14 +23,14 @@ def index(request):
 def projects(request):
     context = RequestContext(request)
     context_dict = {}
-    context_dict['project_categories'] = ProjectCategory.objects.all()
+    context_dict['project_categories'] = ProjectCategory.objects.all().order_by('order')
     return render_to_response('pages/projects/index.html', context_dict, context)
 
 
 def past_projects(request):
     context = RequestContext(request)
     context_dict = {}
-    context_dict['project_categories'] = ProjectCategory.objects.all()
+    context_dict['project_categories'] = ProjectCategory.objects.all().order_by('order')
     return render_to_response('pages/projects/past.html', context_dict, context)
 
 
