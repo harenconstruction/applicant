@@ -36,7 +36,10 @@
               {% else %}
                 {% if project.cost > 0 %}${{ project.cost|intcomma }} | {% endif %}{{ project.location }}
               {% endif %}
-              </h4>
+            </h4>
+            {% if project.project_timeframe %}
+            <h4>Projected Timeframe: {{ project.project_timeframe }}</h4>
+            {% endif %}
             <hr>
             <p class="lead">{{ project.description }}</p>
           </div>
