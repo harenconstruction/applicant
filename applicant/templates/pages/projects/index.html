@@ -14,35 +14,37 @@
 
     <div class="container">
          <h1>Current Projects</h1>
-         <p class="lead">Haren Construction Company strives to create a partnership arrangement with all parties involved in a project to insure quality and satisfaction. This project gallery includes some of our current projects.</p>
+         <p class="lead">Haren Construction Company strives to create a partnership arrangement with all parties involved in a project to ensure quality and satisfaction. This project gallery includes some of our current projects.</p>
     </div>
 
     <div class="container" id="current-projects">
       {% for project_category in project_categories %}
-      <div id="category_{{ project_category.id }}"></div>
-      <br>
-      <hr>
-      <h2>{{ project_category.name }}</h2>
-      <hr>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="row">
-          {% for project in project_category|in_category %}
-            <div class="col-md-4">
-              {% if project.photo.first.photo.url %}<img src="{{ project.photo.first.photo.url }}">{% endif %}
-              <h4>{{ project.name }}</h4>
-              {{ project.location }}<br>
-              <a href="/project/{{ project.id }}">Project details</a>
-              {% if project.photo.first.photo.url %}<i class="fa fa-camera" aria-hidden="true"></i>{% endif %}
+      <button class="accordion">{{ project_category.name }}</button>
+      <div class="panel" id="category_{{ project_category.id }}">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+            {% for project in project_category|in_category %}
+              <div class="col-md-4">
+                {% if project.photo.first.photo %}
+                  {% if project.photo.first.photo.url %}<img src="{{ project.photo.first.photo.url }}">{% endif %}
+                {% endif %}
+                <h4>{{ project.name }}</h4>
+                {{ project.location }}<br>
+                <a href="/project/{{ project.id }}">Project details</a>
+                {% if project.photo.first.photo %}{% if project.photo.first.photo.url %}<i class="fa fa-camera" aria-hidden="true"></i>{% endif %}{% endif %}
+              </div>
+                {% if forloop.counter|divisibleby:3 %}
             </div>
-              {% if forloop.counter|divisibleby:3 %}
-          </div>
-          <div class="row">
-              {% endif %}
-          {% endfor %}
+            <div class="row">
+                {% endif %}
+            {% endfor %}
+            </div>
           </div>
         </div>
       </div>
+      <br>
+      <br>
       {% endfor %}
     </div>
 
@@ -50,4 +52,24 @@
 
     {% block footer %}
       {{ block.super }}
+    <script language="javascript">
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active-accordion");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+} 
+    </script>
     {% endblock %}

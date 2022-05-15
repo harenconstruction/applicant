@@ -3,6 +3,9 @@ import os
 
 from django.db import models
 
+from localflavor.us.models import USPostalCodeField
+
+
 PROJECT_STATUS_LENGTH = 10
 PROJECT_STATUS_CHOICES = (('current', 'Current'), ('past', 'Past'),
                           ('archived', 'Archived'))
@@ -38,7 +41,11 @@ class Project(models.Model):
     engineer = models.CharField(max_length=64, blank=True, null=True)
     owner = models.CharField(max_length=64, blank=True, null=True)
     location = models.CharField(max_length=64, null=True, blank=True)
+    city = models.CharField(max_length=255, null=True, blank=True)
+    state = USPostalCodeField(null=True, blank=True)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
+    cost_description = models.TextField(null=True, blank=True)
+    project_timeframe = models.TextField(null=True, blank=True)
     categories = models.ManyToManyField(ProjectCategory, related_name='projects')
     status = models.CharField(max_length=PROJECT_STATUS_LENGTH, choices=PROJECT_STATUS_CHOICES, default=PROJECT_STATUS_CHOICES[0][0])
 

@@ -14,17 +14,14 @@
 
     <div class="container">
         <h1>Past Projects</h1>
-        <p class="lead">We have successfully completed many construction projects throughout the southeastern US, all with impeccable attention to detail. This project gallery includes some of the more recent projects we've completed.</p>
+        <p class="lead">We have successfully completed many construction projects throughout the southeastern United States, all with impeccable attention to detail. This project gallery includes some of the more recent projects we've completed.</p>
     </div>
 
     <div class="container" id="current-projects">
       {% for project_category in project_categories %}
         {% if project_category|in_past_category|length > 0 %}
-          <div id="category_{{ project_category.id }}"></div>
-          <br>
-          <hr>
-          <h2>{{ project_category.name }}</h2>
-          <hr>
+        <button class="accordion">{{ project_category.name }}</button>
+        <div class="panel" id="category_{{ project_category.id }}">
           <div class="row">
             <div class="col-md-12">
               <div class="row">
@@ -44,6 +41,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <br>
+        <br>
         {% endif %}
       {% endfor %}
     </div>
@@ -52,4 +52,24 @@
 
     {% block footer %}
       {{ block.super }}
+      <script language="javascript">
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+            this.classList.toggle("active");
+        
+            /* Toggle between hiding and showing the active panel */
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        } 
+      </script>        
     {% endblock %}

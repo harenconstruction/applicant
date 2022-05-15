@@ -7,84 +7,72 @@
 
     {% block content %}
 
-    <div class="covid">
-      <div class="container-fluid text-center">
-        <h4>COVID-19 and Our Committment to Safety</h4>
-        <p>At Haren Construction we are focused on doing our part to help prevent the spread of the virus while supporting those who count on us to be there for them. Strict protocols and work organization adjustments have been put in place and will be implemented according to the evolution of the COVID-19 pandemic. Simultaneously, the delivery of our projects is organized to ensure that best possible response to the needs of all those involved.</p>
-        <p>Haren Construction Company continues to follow OSHA and CDC guidelines on every project, along with local government agencies and owner mandates.</p>
-      </div>
-    </div>
-
-    <div class="hiring">
-      <a href="/careers.html">
-      <div class="container-fluid text-center">
-        <h3><span style="font-size; 125%; color: #101010;"><span style="font-weight: 800;">WE'RE HIRING!</span> LEARN MORE</span></h3>
-      </div>
-      </a>
-    </div>
-
-    <!-- Hide Original Hero
-    <div class="hero">
-      <div class="container-fluid text-center">
-        <img src="{% static "img/logo.png" %}" class="hidden-xs pull-left" width="300" style="margin-top: 50px;">
-        <h1>Bringing water to life since 1939.</h1>
-      </div>
-    </div>
-    -->
 
     <!-- Show Featured Hero -->
-    <div class="hero-moccasin-bend">
+    <div class="hero-feature">
       <div class="container-fluid">
-        <img src="{% static "img/logo.png" %}" class="hidden-xs pull-left" width="300" style="margin-top: 50px;">
-        <img src="{% static "img/logo.png" %}" class="visible-xs text-center" width="90%" style="margin-top: 50px;">
+        <img src="{% static "img/logo.png" %}" class="hidden-xs pull-left" width="300" style="padding-top: 80px; padding-left: 50px;">
+        <img src="{% static "img/logo.png" %}" class="visible-xs text-center" width="90%" style="padding-top: 80px; padding-left: 50px;">
         <div class="feature hidden-xs">
-          <h1>Award-Winning Projects</h1>
-          <!-- PM app link --><p class="lead">Haren Construction Company recently recognized for contributing to Chattanooga Public Works 2017 Project of the Year, Moccasin Bend Wastewater Treatment Plant Influent Screen Improvements. <small><i><a href="pastprojects/chattanooga-tn-moccasin-bend-wwtp/index.html" style="color: #f8f513;">project details</a></i></small></p>
-          <p><a href="/projects" class="btn btn-lg btn-danger">View Current Projects</a></p>
+          <h1>Haren Construction Company, Inc.</h1>
+          <!-- PM app link --><p class="lead">Established in 1939, Haren Construction Company is a family-owned and operated construction firm specializing in the construction of engineered water improvement projects.</p>
+          <p>Our reputation has been built on our having the knowledge, experience, and technology needed to get the job done right, on time, and within budget.</p>
         </div>
         <div class="feature-m visible-xs text-center">
-          <h1>Award-Winning Projects</h1>
-          <!-- PM app link --><p class="lead">Haren Contruction Company recently recognized for contributing to Chattanooga Public Works 2017 Project of the Year, Moccasin Bend Wastewater Treatment Plant Hydraulic, Pump and Bar Screen Improvements.</p> <small><i><a href="pastprojects/chattanooga-tn-moccasin-bend-wwtp/index.html" style="color: #f8f513;">project details</a></i></small></p>
-          <p><a href="/projects" class="btn btn-lg btn-danger">View Current Projects</a></p>
+          <img src="{% static "img/logo.png" %}" class="hidden-xs pull-left" width="300" style="margin-top: 50px;">
+          <h1>Haren Construction Company, Inc.</h1>
+          <!-- PM app link --><p class="lead">Established in 1939, Haren Construction Company is a family-owned and operated construction firm specializing in the construction of engineered water improvement projects.</p>
+          <p>Our reputation has been built on our having the knowledge, experience, and technology needed to get the job done right, on time, and within budget.</p>
         </div>
       </div>
     </div>
 
-    <div class="about">
-      <div class="container-fluid text-center" id="about">
-        <h2>Bringing Water To Life Since 1939</h2>
-        <p class="lead">Haren Construction Company, Inc. has been a family owned and operated contracting company for three generations. Our reputation has been built on our having the knowledge, experience and technology needed to get the job done right, from start to finish, on time and within budget.</p>
-        <p class="lead">Working with government and private owners, Haren Construction Company provides commercial and industrial building, mechanical and electrical contracting, public and private utilities, and highway and heavy construction.</p>
-      </div>
-    </div>
-
-    <div class="expertise">
+    <div class="blue">
       <div class="container-fluid">
         <div class="row" id="expertise">
-          <div class="col-md-4" id="water-wastewater-treatment-plants">
-            <img src="static/img/DSC09263.jpg" width="100%"><br>
-            <h2>Treatment Plants</h2>
-            <p>We are experts in the construction and expansion of clean water and wastewater treatment facilities for both public and private sectors.</p>
-            <!-- PM app link --><p><a href="treatment-plants.html" style="color: #f8f513;">Learn more</a></p>
+          <div class="col-md-2 text-center" style="min-width: 20%; background-image: url(static/img/water-treatment-plants.jpg); min-height: 250px; border: 5px solid #94c7ed;">
+            <h2 style="color: #fff; padding: 18% 5%;"><a href="about-us.html#water-treatment-plants">WATER TREATMENT PLANTS</a></h2>
           </div>
-          <div class="col-md-4" id="pump-stations">
-            <img src="static/img/DSCN0027.jpg" width="100%"><br>
-            <h2>Pump Stations</h2>
-            <p> HCCI has extensive experience in the construction and retrofitting of pump stations, ranging from potable water boosting pump stations to deep excavation wastewater pump stations.</p>
-            <!-- PM app link --><p><a href="pump-stations.html" style="color: #f8f513;">Learn more</a></p>
+          <div class="col-md-2 text-center" style="min-width: 20%; background-image: url(static/img/water-treatment-plant.jpg); min-height: 250px; border: 5px solid #94c7ed;">
+            <h2 style="color: #fff; padding: 18% 5%;"><a href="about-us.html#water-treatment-plants">WASTEWATER TREATMENT PLANTS</a></h2>
           </div>
-          <div class="col-md-4" id="pipe-lines">
-            <img src="static/img/pipelines.jpg" width="100%"><br>
-            <h2>Pipe Lines</h2>
-            <p>Underground pipeline construction is an important component of Haren Construction Company, Inc. and we have extensive experience in water and wastewater transmission lines in all types of geological conditions.</p>
-            <!-- PM app link --><p><a href="pipe-lines.html" style="color: #f8f513;">Learn more</a></p>
+          <div class="col-md-2 text-center" style="min-width: 20%; background-image: url(static/img/pump-stations.jpg); min-height: 250px; border: 5px solid #94c7ed;">
+            <h2 style="color: #fff; padding: 20% 5%;"><a href="about-us.html#pump-stations">PUMP STATIONS</a></h2>
+          </div>
+          <div class="col-md-2 text-center" style="min-width: 20%; background-image: url(static/img/dams-and-marine-work.jpg); min-height: 250px; border: 5px solid #94c7ed;">
+            <h2 style="color: #fff; padding: 18% 5%;"><a href="about-us.html#dams-and-marine-work">DAMS & MARINE WORK</a></h2>
+          </div>
+          <div class="col-md-2 text-center" style="min-width: 20%; background-image: url(static/img/water-storage-tanks.png); min-height: 250px; border: 5px solid #94c7ed;">
+            <h2 style="color: #fff; padding: 18% 5%;"><a href="about-us.html#water-storage-tanks">WATER STORAGE TANKS</a></h2>
           </div>
         </div>
       </div>
     </div>
 
+    <div class="news">
+      <div class="container-fluid" id="about">
+        <div class="row">
+          <div class="col-md-6" style="padding: 3%;">
+            <h2>Over 80 Years Of Excellence</h2>
+            <p class="lead">Haren Construction Company strives to create a partnership arrangement with all parties involved to ensure quality and satisfaction, every time.</p>
+            <blockquote><p class="lead"><b>250 Years Combined Engineering/Construction Experience</b></p></blockquote>
+            <p class="lead">With a license to operate in eleven states of the southeastern region (Alabama, Arkansas, Georgia, Kentucky, Louisiana, Mississippi, North Carolina, South Carolina, Tennessee, Texas, and Virginia), we hope to continue our growth and expansion each year.</p>
+          </div>
+          <div class="col-md-6 text-center">
+            <div class="overlay" onClick="style.pointerEvents='none'"></div>
+            <iframe src="https://www.google.com/maps/d/embed?mid=1Dx5CxhdoS2DULMswDDxuaYIYUdt1R8Hw&ehbc=2E312F" width="100%" height="550" frameborder="0" style="border: 0;"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
     <div class="container-fluid" id="current-projects">
       <div class="row">
+        <div class="col-md-6" style="padding: 3%;">
+            <p class="lead">Haren Construction Company, Inc. is a construction firm specialized in the construction of engineered water improvement projects.</p>
+            <p class="lead">Haren Construction Company, Inc. focuses on water treatment plants, wastewater treatment plants, pumping stations, raw water impoundments, pipeline constructions, and other miscellaneous water projects.</p>
+            <p class="lead"><a href="/projects/index.html" class="btn btn-lg btn-warning">Current Projects</a> | <a href="/projects/past.html" class="btn btn-lg btn-warning">Past Projects</a></p>
+        </div>
         <div class="col-md-6 text-center">
           <div class="container-fluid text-center" id="gallery">
             <div class="row">
@@ -108,36 +96,13 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6" style="padding: 3%;">
-            <h2>Over 75 Years Of Excellence</h2>
-            <p class="lead">Haren Construction Company strives to create a partnership arrangement with all parties involved in a project to insure quality and satisfaction.</p>
-            <blockquote><p class="lead"><b>250 Years Combined Engineering/Construction Experience</b></p></blockquote>
-            <p class="lead">Haren Construction Company has successfully completed many construction projects throughout the south, all with impeccable attention to detail.</p>
-            <p><a href="projects" style="color: red;">View Current Projects</a> | <a href="pastprojects" style="color: red;">View Past Projects</a></p>
-        </div>
       </div>
     </div>
-
-    <div class="news">
-      <div class="container-fluid" id="about">
-        <div class="row">
-          <div class="col-md-6" style="padding: 3%;">
-            <h2>'Good People' continue building Etowah's Haren Construction Company four generations later.</h2>
-            <p>By Dewey Morgan | <a href="http://www.dailypostathenian.com" target="_blank" style="color: red;">The Daily Post-Athenian.com</a></p>
-            <p class="lead">Nearing its 80th birthday, a local family-owned business has seen four generations of family members work for the company.</p>
-            <p><a href="http://www.dailypostathenian.com/business_news/article_773cdb08-1d9d-11e8-9b5b-fb13f7e4dcae.html" target="_blank" class="btn btn-lg btn-danger">Read the full story</a></p>
-          </div>
-          <div class="col-md-6 text-center">
-            <img src="static/img/news-story-1.jpg" width="100%">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container-fluid" style="padding: 0;">
+    <hr>
+    <div class="container" style="padding: 0;">
       <div class="row">
         <div class="col-md-12">
-          <div class="overlay" onClick="style.pointerEvents='none'"></div>
+          <div onClick="style.pointerEvents='none'"></div>
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3253.97305535808!2d-84.51971499999999!3d35.356314999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885e43ffa87021e5%3A0xf3908dfb1b9aeae3!2sHaren+Construction+Co!5e0!3m2!1sen!2sus!4v1431542310182" width="100%" height="500" frameborder="0" style="border: 0;"></iframe>
         </div>
       </div>

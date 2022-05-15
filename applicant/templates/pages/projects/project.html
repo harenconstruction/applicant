@@ -30,29 +30,51 @@
             {% if project.engineer and project.owner %}
               <h2>Engineered by {{ project.engineer }} for {{ project.owner }}</h2>
             {% endif %}
-            <h4>{% if project.cost > 0 %}${{ project.cost|intcomma }} | {% endif %}{{ project.location }}</h4>
+            <h4>
+              {% if project.cost_description %}
+              {{ project.cost_description }} | {{ project.location }}
+              {% else %}
+                {% if project.cost > 0 %}${{ project.cost|intcomma }} | {% endif %}{{ project.location }}
+              {% endif %}
+            </h4>
+            {% if project.project_timeframe %}
+            <h4>Projected Timeframe: {{ project.project_timeframe }}</h4>
+            {% endif %}
             <hr>
             <p class="lead">{{ project.description }}</p>
-            <hr>
-            <h3>We're Hiring</h3>
-            <p>We encourage qualified, aggressive individuals to join our team and become part of an organization who considers employees their greatest resource.</p>
-            
-            <p><a href="http://jobs.harenconstruction.com/application/?project_id={{project.id}}" style="color: #fff;" class="btn btn-lg btn-danger" role="button">APPLY ONLINE</a></p>
           </div>
         </div>
 
         <div class="col-md-3 subnav">
-          <h3 style="color: #000;">Current Projects</h3>
-          <hr>
-          <ul>
+          {% if project.status == 'current' %}
+            <h3 style="color: #000;">Current Projects</h3>
             {% for project_category in project_categories %}
-            <li><strong>{{ project_category.name }}</strong></li>
-            {% for aproject in project_category|in_category %}
-            <li><a href="{{ aproject.id }}">{{ aproject.name}}</a><br><small>{{ aproject.location }}</small></li>
+              {% if project_category|in_category|length > 0 %}
+                <button class="accordion">{{ project_category.name }}</button>
+                <div class="panel" id="category_{{ project_category.id }}">
+                  <ul>
+                    {% for aproject in project_category|in_category %}
+                      <li><a href="{{ aproject.id }}">{{ aproject.name}}</a><br><small>{{ aproject.location }}</small></li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
             {% endfor %}
-            <hr>
+          {% else %}
+            <h3 style="color: #000;">Past Projects</h3>
+            {% for project_category in project_categories %}
+              {% if project_category|in_past_category|length > 0 %}
+                <button class="accordion">{{ project_category.name }}</button>
+                <div class="panel" id="category_{{ project_category.id }}">
+                  <ul>
+                    {% for aproject in project_category|in_past_category %}
+                      <li><a href="{{ aproject.id }}">{{ aproject.name}}</a><br><small>{{ aproject.location }}</small></li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
             {% endfor %}
-          </ul>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -60,4 +82,24 @@
 
     {% block footer %}
       {{ block.super }}
+      <script language="javascript">
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+            this.classList.toggle("active-accordion");
+        
+            /* Toggle between hiding and showing the active panel */
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        } 
+      </script>
     {% endblock %}
