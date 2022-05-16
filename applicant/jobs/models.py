@@ -3,7 +3,8 @@ import os
 
 from django.db import models
 from django.utils import timezone
-from localflavor.us.models import PhoneNumberField, USPostalCodeField
+from localflavor.us.models import USPostalCodeField
+from phonenumber_field.modelfields import PhoneNumberField
 
 WORK_STATUS_LENGTH = 20
 BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
@@ -70,7 +71,7 @@ class EmploymentStatus(models.Model):
         ('parttime', 'Part-time'),
     )
 
-    contact = models.ForeignKey(Contact, related_name='employmentstatus')
+    contact = models.ForeignKey(Contact, related_name='employmentstatus', on_delete=models.CASCADE)
     legal_to_work = models.BooleanField(blank=False, default=None, choices=BOOL_CHOICES)
     available_to_work = models.CharField(max_length=WORK_STATUS_LENGTH, choices=WORK_STATUS, default=None)
     states_available_work = models.ManyToManyField(WorkState, verbose_name='States available for work')
@@ -98,7 +99,7 @@ class WorkExperience(models.Model):
 
     """A contact's past work experience contact and related information."""
 
-    contact = models.ForeignKey(Contact, related_name='workexperience')
+    contact = models.ForeignKey(Contact, related_name='workexperience', on_delete=models.CASCADE)
     company_name = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     state = USPostalCodeField()
@@ -127,7 +128,7 @@ class Education(models.Model):
 
     """A contact's past education information."""
 
-    contact = models.ForeignKey(Contact, related_name='education')
+    contact = models.ForeignKey(Contact, related_name='education', on_delete=models.CASCADE)
     school_name = models.CharField(max_length=255, blank=False)
     city = models.CharField(max_length=255)
     state = USPostalCodeField()
@@ -148,7 +149,7 @@ class AdditionalInformation(models.Model):
 
     """A contact's qualifications, experience, and resume."""
 
-    contact = models.ForeignKey(Contact, related_name='additionalinformation')
+    contact = models.ForeignKey(Contact, related_name='additionalinformation', on_delete=models.CASCADE)
     summary_skills = models.TextField(blank=True)
     resume = models.FileField(blank=True, upload_to=get_file_path)
 
@@ -164,7 +165,7 @@ class Reference(models.Model):
 
     """References for a given contact."""
 
-    contact = models.ForeignKey(Contact, related_name='reference')
+    contact = models.ForeignKey(Contact, related_name='reference', on_delete=models.CASCADE)
     reference_name = models.CharField(max_length=255)
     reference_location = models.CharField(max_length=255)
     reference_phone = PhoneNumberField()

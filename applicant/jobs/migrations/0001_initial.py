@@ -5,6 +5,8 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 import django.db.models.deletion
 import localflavor.us.models
+import phonenumber_field
+# from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Migration(migrations.Migration):
@@ -35,7 +37,7 @@ class Migration(migrations.Migration):
                 ('city', models.CharField(max_length=255)),
                 ('state', localflavor.us.models.USPostalCodeField()),
                 ('zipcode', models.CharField(max_length=10)),
-                ('phone', localflavor.us.models.PhoneNumberField()),
+                ('phone', phonenumber_field.modelfields.PhoneNumberField()),
                 ('email', models.EmailField(max_length=254)),
                 ('work_eligibility_proof', models.BooleanField(default=True)),
                 ('certified', models.BooleanField(default=False)),
@@ -80,7 +82,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('reference_name', models.CharField(max_length=255)),
                 ('reference_location', models.CharField(max_length=255)),
-                ('reference_phone', localflavor.us.models.PhoneNumberField()),
+                ('reference_phone', phonenumber_field.modelfields.PhoneNumberField()),
                 ('contact', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='jobs.Contact')),
             ],
         ),
@@ -93,7 +95,7 @@ class Migration(migrations.Migration):
                 ('state', localflavor.us.models.USPostalCodeField()),
                 ('zipcode', models.CharField(max_length=10)),
                 ('supervisor', models.CharField(max_length=255)),
-                ('phone', localflavor.us.models.PhoneNumberField()),
+                ('phone', phonenumber_field.modelfields.PhoneNumberField()),
                 ('email', models.EmailField(max_length=254)),
                 ('start_date', models.DateField(verbose_name='Started work on')),
                 ('start_pay', models.DecimalField(decimal_places=2, max_digits=6)),

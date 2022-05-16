@@ -1,13 +1,12 @@
-from django.conf.urls import url
-
+from django.urls import re_path
 
 from www import views
 
 
 urlpatterns = [
-    url(r'^$', views.index),
-    url(r'^projects$', views.projects),
-    url(r'^projects/past$', views.past_projects),
-    url(r'^project/(?P<id>\d+)$', views.project),
-    url(r'^(?P<name>.*)', views.page),
+    re_path(r'^$', views.index),
+    re_path(r'^projects$', views.projects),
+    re_path(r'^projects/past$', views.past_projects),
+    re_path(r'^project/(?P<id>\d+)$', views.project),
+    re_path(r'^(?P<name>.*)', views.page),
 ]
