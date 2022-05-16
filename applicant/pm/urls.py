@@ -1,9 +1,8 @@
-from django.conf.urls import url
-
+from django.urls import include, re_path
 
 from pm.views import all
 
 
 urlpatterns = [
-    url(r'^pm/(?P<name>.*)', all),
+    re_path(r'^pm/(?P<name>.*)', all),
 ]

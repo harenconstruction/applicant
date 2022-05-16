@@ -1,4 +1,5 @@
-from django.conf.urls import url
+from django.urls import include, re_path
+
 from jobs.views import index_form, applicant_thanks
 
 from jobs.forms import (ContactForm,
@@ -23,9 +24,9 @@ urlpatterns = [
     # url(r'^$', index_form, name='index'),
 
     # application
-    url(r'^index.html$', ApplicationWizard.as_view(FORMS), name='application'),
-    url(r'^$', ApplicationWizard.as_view(FORMS), name='application'),
-    url(r'^thanks$', applicant_thanks, name='thanks'),
-    url(r'^(?P<name>.*)', all),
-    url(r'^$', ApplicationWizard.as_view(FORMS), name='application'),
+    re_path(r'^index.html$', ApplicationWizard.as_view(FORMS), name='application'),
+    re_path(r'^$', ApplicationWizard.as_view(FORMS), name='application'),
+    re_path(r'^thanks$', applicant_thanks, name='thanks'),
+    re_path(r'^(?P<name>.*)', all),
+    re_path(r'^$', ApplicationWizard.as_view(FORMS), name='application'),
 ]

@@ -1,15 +1,14 @@
-from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import get_object_or_404, redirect, render, render_to_response
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template import RequestContext, TemplateDoesNotExist
 from django.template.response import TemplateResponse
+from django.urls import reverse
 
 from pm.models import ProjectCategory, Project, ProjectPhoto, Slideshow
 
 
 def index(request):
-    context = RequestContext(request)
     context_dict = {}
     context_dict['project_categories'] = ProjectCategory.objects.all()
     try:
@@ -17,25 +16,22 @@ def index(request):
     except Slideshow.DoesNotExist:
         context_dict['slideshow_photos'] = None
 
-    return render_to_response('pages/index.html', context_dict, context)
+    return render(request, 'pages/index.html', context_dict)
 
 
 def projects(request):
-    context = RequestContext(request)
     context_dict = {}
     context_dict['project_categories'] = ProjectCategory.objects.all().order_by('order')
-    return render_to_response('pages/projects/index.html', context_dict, context)
+    return render(request, 'pages/projects/index.html', context_dict)
 
 
 def past_projects(request):
-    context = RequestContext(request)
     context_dict = {}
     context_dict['project_categories'] = ProjectCategory.objects.all().order_by('order')
-    return render_to_response('pages/projects/past.html', context_dict, context)
+    return render(request, 'pages/projects/past.html', context_dict)
 
 
 def project(request, id):
-    context = RequestContext(request)
     context_dict = {}
 
     try:
@@ -45,12 +41,11 @@ def project(request, id):
 
     context_dict['project_photos'] = Project.objects.get(id=id).photo.all()
     context_dict['project_categories'] = ProjectCategory.objects.all().order_by('order')
-    return render_to_response('pages/projects/project.html', context_dict, context)
+    return render(request, 'pages/projects/project.html', context_dict)
 
 
 def page(request, name):
     try:
-        context = RequestContext(request)
         context_dict = {}
         context_dict['project_categories'] = ProjectCategory.objects.all()
         if name == 'treatment-plants.html':
@@ -71,6 +66,6 @@ def page(request, name):
             except Slideshow.DoesNotExist:
                 context_dict['slideshow_photos'] = None
 
-        return render_to_response('pages/' + name, context_dict, context)
+        return render(request, 'pages/' + name, context_dict)
     except TemplateDoesNotExist:
         raise Http404

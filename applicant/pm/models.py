@@ -59,7 +59,7 @@ class Project(models.Model):
 
 class ProjectPhoto(models.Model):
 
-    project = models.ForeignKey(Project, related_name='photo')
+    project = models.ForeignKey(Project, related_name='photo', on_delete=models.CASCADE)
     photo = models.ImageField(blank=True, upload_to=get_file_path)
     title = models.CharField(blank=True, null=True, max_length=64)
 
